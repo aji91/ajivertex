@@ -1,0 +1,23 @@
+<div class="topNav text-right">
+  <div class="navCntnr d-flex align-items-center justify-content-end">
+    <div class="stngIcon d-flex align-item-center crsrPntr">
+      <img class="topNvStng" src="/assets/settings.svg" alt="">
+    </div>
+    <div class="notiCont d-flex align-items-center ml-3 crsrPntr">
+      <img src="/assets/notification.svg" alt="">
+      <div class="ntiCount">
+        02
+      </div>
+    </div>
+    <div class="btn-group ml-4">
+      <button type="button" class="btn btn-secondary dropdown-toggle prflDrpBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="prflImg" src="/assets/user.png" alt="">
+        Jhonson
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" style="width:180px;">
+        <button class="dropdown-item" type="button">Profile</button>
+        <%= link_to 'Logout', destroy_user_session_path, class: "dropdown-item", method: :delete %>
+      </div>
+    </div>
+  </div>
+</div>

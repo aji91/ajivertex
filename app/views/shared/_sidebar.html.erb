@@ -1,0 +1,90 @@
+<div class="leftNav d-flex flex-column" id="sdBrToggle">
+  <div class="lgContainer">
+    <img src="/assets/logo.svg" alt="">
+    <div class="material-icons mnuTglIcon" onclick="sideBarToggle()">menu</div>
+  </div>
+  <button class="btn lftNvBtn active" type="button">
+    <img class="navIcons" src="/assets/dashboard.svg" alt="" />
+    Dashboard
+  </button>
+  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/sales.svg" alt="">
+      Sales
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample1">
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Estimates</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Orders</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Proforma</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Invoice</a>
+  </div>
+  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/purchase.svg" alt="">
+      Purchase
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample2">
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Purchase Order</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Inventory</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Store Returns</a>
+  </div>
+  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/production.svg" alt="">
+      Production
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample3">
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Job Card</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Store Request</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Quality Check Reports</a>
+  </div>
+  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/report.svg" alt="">
+      Reports
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample4">
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Logs</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Work Flow</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Approval</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Email Logs</a>
+  </div>
+  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/service.svg" alt="">
+      Services
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample5">
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Service Request</a>
+  </div>
+  <button class="btn lftNvBtn" type="button">
+    <img class="navIcons" src="/assets/amc.svg" alt="">
+    AMC
+  </button>
+  <button class="btn lftNvBtn acrdBtn <%= settings_opend(controller_name) ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/settings.svg" alt="">
+      Settings
+    </p>
+    <span class="material-icons">expand_more</span>
+  </button>
+  <div class="collapse multi-collapse clpsMenu <%= settings_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample6">
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('categories') ? 'active' : '' %>" href="<%= categories_path %>">Categories</a>
+    <a class="btn inrLftBtn lftNvBtn">Models</a>
+    <a class="btn inrLftBtn lftNvBtn">Vendors</a>
+    <a class="btn inrLftBtn lftNvBtn">Clients</a>
+    <a class="btn inrLftBtn lftNvBtn">Users</a>
+    <a class="btn inrLftBtn lftNvBtn">Branches</a>
+    <a class="btn inrLftBtn lftNvBtn">Departments</a>
+  </div>
+</div>

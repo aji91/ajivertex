@@ -1,0 +1,35 @@
+<div class="topWrapper text-center">
+  <div class="cntctLnk text-right">
+    Need Account?
+    <a class="lnkCls" href="#">Contact Us</a>
+  </div>
+  <img src="/assets/logo.svg" alt="">
+</div>
+<div class="borderDiv">
+  <img class="w-100" src="/assets/border.png" alt="">
+</div>
+<div class="lognContainer">
+  <h2 class="cstmHdr">Login</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {"data-parsley-validate" => true, class: "form-submit"}) do |f| %>
+    <div class="inptWrpr">
+      <label class="cstmLbl">Username</label>
+      <%= f.text_field :login, autofocus: true, placeholder: "Username" %>
+    </div>
+    <div class="inptWrpr">
+      <!-- <div class="d-flex align-items-start justify-content-between">
+        <label class="cstmLbl">Password</label>
+        <a class="lnkCls" href="">Forgot Password?</a>
+      </div> -->
+      <%= f.password_field :password, placeholder: "Enter Password" %>
+    </div>
+    <label class="chkContainer">Remember me
+      <%= f.check_box :remember_me %>
+      <span class="checkmark"></span>
+    </label>
+     <%= f.submit "Login", class: 'btn primButton mt-3' %>
+  <% end %>
+</div>
+<div class="pwrdCntnr text-center">
+  <p>Powered by</p>
+  <img src="/assets/logo.svg" alt="">
+</div>

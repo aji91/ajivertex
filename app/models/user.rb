@@ -14,4 +14,14 @@ class User < ApplicationRecord
   validates_length_of :mobile,  minimum: 10, maximum: 13
   validates_length_of :aadhar_no,  minimum: 12, maximum: 12
   validates_length_of :pan_no,  minimum: 10, maximum: 10
+
+  attr_accessor :login
+
+  def self.find_for_database_authentication warden_condition
+    conditions = warden_condition.dup
+    login = conditions.delete(:login)
+    where(conditions).where(
+      ["lower(username) = :value OR lower(email) = :value",
+      { value: login.strip.downcase}]).first
+  end
 end

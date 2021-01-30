@@ -1,32 +1,30 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  reconnect: true
+  socket: /var/run/mysqld/mysqld.sock
+
 development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: new_vertex_dev
-  pool: 5
-  username: postgres
-  password: postgres
+  username: root
+  password: root
 
 staging:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: new_vertex_staging
-  pool: 5
-  username: navin
-  password: navin
+  username: 
+  password: 
 
 test:
-  development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: new_vertex_test
-  pool: 5
-  username: postgres
-  password: postgres
+  username: root
+  password: root
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: new_vertex_prod
-  pool: 5
-  username: groot
-  password: groot
+  <<: *default
+  database: new_vertex_production
+  username: 
+  password: 

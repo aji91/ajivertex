@@ -1,0 +1,8 @@
+<div class="lognContainer">
+	<%= form_for(@cat, url: @cat.new_record? ? categories_path : category_path(@cat), html: { "data-parsley-validate" => true, class: 'form-submit', id: 'cat-form' }) do |f| %>
+	<div class="inptWrpr">
+		<label class="cstmLbl">Name</label>
+		<%= f.text_field :name, placeholder: "Name" %>
+	</div>
+	<% end %>
+</div>

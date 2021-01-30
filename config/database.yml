@@ -1,0 +1,32 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: new_vertex_dev
+  pool: 5
+  username: postgres
+  password: postgres
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: new_vertex_staging
+  pool: 5
+  username: navin
+  password: navin
+
+test:
+  development:
+  adapter: postgresql
+  encoding: unicode
+  database: new_vertex_test
+  pool: 5
+  username: postgres
+  password: postgres
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: new_vertex_prod
+  pool: 5
+  username: groot
+  password: groot

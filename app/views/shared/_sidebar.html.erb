@@ -16,8 +16,8 @@
   </button>
   <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample1">
     <a class="btn inrLftBtn lftNvBtn active" type="button">Estimates</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Orders</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Proforma</a>
+    <a class="btn inrLftBtn lftNvBtn" type="button">Orders</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Invoice</a>
   </div>
   <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
@@ -84,7 +84,7 @@
     <a class="btn inrLftBtn lftNvBtn">Vendors</a>
     <a class="btn inrLftBtn lftNvBtn">Clients</a>
     <a class="btn inrLftBtn lftNvBtn">Users</a>
-    <a class="btn inrLftBtn lftNvBtn">Branches</a>
-    <a class="btn inrLftBtn lftNvBtn">Departments</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('branches') ? 'active' : '' %>" href="<%= branches_path %>">Branches</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('departments') ? 'active' : '' %>" href="<%= departments_path %>">Departments</a>
   </div>
 </div>

@@ -1,0 +1,7 @@
+
+Estimate  - has many proformas
+proforma - has many orders
+order - as many store request
+store_request - has many job card
+job_card has many test reports
+order has many invoices

@@ -13,20 +13,20 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {"data-parsley-validate" => true, class: "form-submit"}) do |f| %>
     <div class="inptWrpr">
       <label class="cstmLbl">Username</label>
-      <%= f.text_field :login, autofocus: true, placeholder: "Username" %>
+      <%= f.text_field :login, autofocus: true, placeholder: "Username", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter username." %>
     </div>
     <div class="inptWrpr">
       <!-- <div class="d-flex align-items-start justify-content-between">
         <label class="cstmLbl">Password</label>
         <a class="lnkCls" href="">Forgot Password?</a>
       </div> -->
-      <%= f.password_field :password, placeholder: "Enter Password" %>
+      <%= f.password_field :password, placeholder: "Enter Password", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter password." %>
     </div>
     <label class="chkContainer">Remember me
       <%= f.check_box :remember_me %>
       <span class="checkmark"></span>
     </label>
-     <%= f.submit "Login", class: 'btn primButton mt-3' %>
+     <%= f.submit "Login", class: 'btn primButton mt-3 form-submit' %>
   <% end %>
 </div>
 <div class="pwrdCntnr text-center">

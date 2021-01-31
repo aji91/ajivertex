@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GwayERP</title>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Boostrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- google-material icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- css stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- font css -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="dashbrdWrapper d-flex align-items-start">
+        <div class="leftNav d-flex flex-column" id="sdBrToggle">
+            <div class="lgContainer">
+                <img src="./images/logo.svg" alt="">
+                <div class="material-icons mnuTglIcon" onclick="sideBarToggle()">menu</div>
+            </div>
+            <button class="btn lftNvBtn active" type="button">
+                <img class="navIcons" src="./images/dashboard.svg" alt="">
+                Dashboard
+            </button>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/sales.svg" alt="">
+                    Sales
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample1">
+                <button class="btn inrLftBtn lftNvBtn active" type="button">
+                    Estimates
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Orders
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Proforma
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Invoice
+                </button>
+            </div>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/purchase.svg" alt="">
+                    Purchase
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample2">
+                <button class="btn inrLftBtn lftNvBtn active" type="button">
+                    Purchase Order
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Inventory
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Store Returns
+                </button>
+            </div>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/production.svg" alt="">
+                    Production
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample3">
+                <button class="btn inrLftBtn lftNvBtn active" type="button">
+                    Job Card
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Store Request
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Quality Check Reports
+                </button>
+            </div>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/report.svg" alt="">
+                    Reports
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample4">
+                <button class="btn inrLftBtn lftNvBtn active" type="button">
+                    Logs
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Work Flow
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Approval
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Email Logs
+                </button>
+            </div>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/service.svg" alt="">
+                    Services
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample5">
+                <button class="btn inrLftBtn lftNvBtn active" type="button">
+                    Service Request
+                </button>
+            </div>
+            <button class="btn lftNvBtn" type="button">
+                <img class="navIcons" src="./images/amc.svg" alt="">
+                AMC
+            </button>
+            <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse"
+                data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">
+                <p class="m-0">
+                    <img class="navIcons" src="./images/settings.svg" alt="">
+                    Settings
+                </p>
+                <span class="material-icons">expand_more</span>
+            </button>
+            <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample6">
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Categories
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Models
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Vendors
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Clients
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Users
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Branches
+                </button>
+                <button class="btn inrLftBtn lftNvBtn" type="button">
+                    Departments
+                </button>
+            </div>
+        </div>
+        <div class="rightMainContainer w-100">
+            <div class="topNav text-right">
+                <div class="navCntnr d-flex align-items-center justify-content-end">
+                    <div class="stngIcon d-flex align-items-center crsrPntr">
+                        <img class="topNvStng" src="./images/settings.svg" alt="">
+                    </div>
+                    <div class="notiCont d-flex align-items-center ml-3 crsrPntr">
+                        <img src="./images/notification.svg" alt="">
+                        <div class="ntiCount">
+                            02
+                        </div>
+                    </div>
+                    <div class="btn-group ml-4">
+                        <button type="button" class="btn btn-secondary dropdown-toggle prflDrpBtn"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="prflImg" src="./images/user.png" alt="">
+                            Jhonson
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" style="width:180px;">
+                            <button class="dropdown-item" type="button">Profile</button>
+                            <button class="dropdown-item" type="button">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dbmnContainer">
+                <button class="btn bckBtn"><img src="./images/backIcon.svg" alt="">Back</button>
+                <div class="pgHdWrpr mb-4 d-flex align-items-start justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h2 class="pgHdr m-0">Invoice</h2>
+                        <button class="btn primButton smlBtn ml-3">
+                            View Sales Order
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button class="btn outlButton smlBtn">
+                            <img src="./images/email.svg" alt="">
+                            Send Email
+                        </button>
+                        <button class="btn outlButton smlBtn ml-3">
+                            <img src="./images/pdf.svg" alt="">
+                            Download Pdf
+                        </button>
+                    </div>
+                </div>
+                <div class="formWrapper">
+                    <div class="topContainer prvwWrpr d-flex align-items-start justify-content-end">
+                        <div class="ritContainer">
+                            <h4>The Universal System</h4>
+                            <div class="dtlCntnr">
+                                <label for="">Proforma No. :</label>
+                                <p>EST/01/2021</p>
+                            </div>
+                            <div class="dtlCntnr">
+                                <label for="">Date :</label>
+                                <p>26-01-2021 20:17</p>
+                            </div>
+                            <div class="dtlCntnr">
+                                <label for="">Payment Type :</label>
+                                <p>Cash</p>
+                            </div>
+                            <div class="dtlCntnr">
+                                <label for="">Payment Status :</label>
+                                <p>Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table cstmTable">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th style="width: 30%;">Product</th>
+                                <th>HSN #</th>
+                                <th>Quantity</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>15 KVA Servo Stabilizer</td>
+                                <td>85044040</td>
+                                <td>2</td>
+                                <td>25500.00</td>
+                                <td>51000.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="brdrTp mt-4"></div>
+                    <div class="row mt-4 align-items-end justify-content-end">
+                        <div class="col-4">
+                            <div class="inptWrpr lblLft">
+                                <label for="">Sub Total</label>
+                                <input type="text" disabled value="51000.00">
+                            </div>
+                            <div class="inptWrpr lblLft">
+                                <label for="">CGST</label>
+                                <input type="text" disabled value="1275.00">
+                            </div>
+                            <div class="inptWrpr lblLft">
+                                <label for="">SGST</label>
+                                <input type="text" disabled value="1275.00">
+                            </div>
+                            <div class="inptWrpr lblLft">
+                                <label for="">Total</label>
+                                <input type="text" disabled value="53550.00">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row infoVw">
+                        <div class="col-6">
+                            <div class="inptWrpr">
+                                <label for="">Terms</label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Dignissim diam quis enim lobortis
+                                    scelerisque. Lobortis mattis aliquam faucibus purus in. Feugiat </p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="inptWrpr">
+                                <label for="">Notes</label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Dignissim diam quis enim lobortis
+                                    scelerisque. Lobortis mattis aliquam faucibus purus in. Feugiat </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="fmBtnWrpr">
+                        <button class="btn outlButton">Cancel</button>
+                        <button class="btn primButton">Edit</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
+<script src="./js/gway.js"></script>
+
+</html>

@@ -1,0 +1,40 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Branches</h2>
+    <a class="btn primButton" href="<%= new_branch_path %>">New Branch</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <button class="btn outlButton smlBtn">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </button>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Branch Name</th>
+        <th>Address</th>
+        <th>Mobile</th>
+        <th>PIN</th>
+        <th style="width: 18%;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @branches.each do |branch| %>
+      <tr>
+        <td><%= branch.name %></td>
+        <td><%= branch.full_address %></td>
+        <td><%= branch.mobile %></td>
+        <td><%= branch.pin_code %></td>
+        <td style="vertical-align: middle;">
+          <a href="<%= edit_branch_path(branch) %>" class="mr-4">Edit</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

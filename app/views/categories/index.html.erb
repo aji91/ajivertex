@@ -1,0 +1,36 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Categories</h2>
+    <a class="btn primButton" href="<%= new_category_path %>">New Category</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <button class="btn outlButton smlBtn">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </button>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+        <th style="width: 20%;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cats.each do |cat| %>
+      <tr>
+        <td><%= cat.name %></td>
+        <td><%= cat.active? %></td>
+        <td>
+          <a href="<%= edit_category_path(cat) %>">Edit</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

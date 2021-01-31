@@ -3,6 +3,7 @@ function sideBarToggle(){
 }
 
 $(document).on('click', '.form-submit', function(){
+	console.log('test');
   return $(this).closest('form').parsley().validate();
 });
 

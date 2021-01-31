@@ -32,5 +32,19 @@
     <%= yield %>
   </div>
   <% end %>
+
+  <% if !flash.empty? %>
+    <% flash.each do |key, value| %>
+      <% if key == 'error' %>
+      <script type="text/javascript">
+        toastr.error('', "<%= value %>");
+      </script>
+      <% else %>
+      <script type="text/javascript">
+        toastr.success('', "<%= value %>");
+      </script>
+      <% end %>
+    <% end %>
+  <% end %>
 </body>
 </html>

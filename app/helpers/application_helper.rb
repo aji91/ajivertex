@@ -1,5 +1,5 @@
 module ApplicationHelper
 	def settings_opend(cname)
-		['categories'].include?(cname)
+		['categories', 'branches', 'departments'].include?(cname)
 	end
 end

@@ -10,10 +10,28 @@ class DepartmentsController < ApplicationController
     @department = Department.new
   end
 
+  def create
+    @department = Department.new(dep_params)
+    if @department.save
+      flash[:notice] = 'Department successfully created.'
+      redirect_to departments_path
+    else
+      flash[:error] = @department.errors.full_messages[0]
+      render :new
+    end
+  end
+
   def edit
   end
 
   def update
+    if @department.update_attributes(dep_params)
+      flash[:notice] = 'Department successfully updated.'
+      redirect_to departments_path
+    else
+      flash[:error] = @department.errors.full_messages[0]
+      render :edit
+    end
   end
 
   private
@@ -24,5 +42,9 @@ class DepartmentsController < ApplicationController
       flash[:error] = "Department not found."
       redirect_to departments_path
     end
+  end
+
+  def dep_params
+    params.require(:department).permit(:name)
   end
 end

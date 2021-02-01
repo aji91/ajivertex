@@ -1,0 +1,46 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Model</h2>
+    <a class="btn primButton" href="<%= new_product_model_path %>">New Model</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <button class="btn outlButton smlBtn">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </button>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Input Range</th>
+        <th>Output Range</th>
+        <th>Frequency</th>
+        <th>Protection</th>
+        <th>Kva</th>
+        <th>Optional</th>
+        <th style="width: 18%;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Model_one</td>
+        <td>200 V</td>
+        <td>230 V</td>
+        <td>50 Hz</td>
+        <td>Surge Protection-V25-B+C/3+NPE TPN SPD</td>
+        <td>15</td>
+        <td></td>
+        <td style="vertical-align: middle;">
+          <a href="" class="mr-4">Show</a>
+          <a href="" class="mr-4">Edit</a>
+          <button class="btn p-0 pb-1 material-icons text-danger m-0">delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

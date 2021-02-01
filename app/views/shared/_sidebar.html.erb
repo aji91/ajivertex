@@ -80,7 +80,7 @@
   </button>
   <div class="collapse multi-collapse clpsMenu <%= settings_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample6">
     <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('categories') ? 'active' : '' %>" href="<%= categories_path %>">Categories</a>
-    <a class="btn inrLftBtn lftNvBtn">Models</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('product_models') ? 'active' : '' %>" href="<%= product_models_path %>">Models</a>
     <a class="btn inrLftBtn lftNvBtn">Vendors</a>
     <a class="btn inrLftBtn lftNvBtn">Clients</a>
     <a class="btn inrLftBtn lftNvBtn">Users</a>

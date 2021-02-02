@@ -52,14 +52,14 @@
       <div class="col-6">
         <div class="inptWrpr">
           <label class="cstmLbl">Country</label>
-          <%= f.select :country_id, options_for_select(Country.asc_order.map { |p| [p.name, p.id] }, @branch.country_id),{ include_blank: 'Select Country' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select country.", onchange: 'updateStates();' %>
+          <%= f.select :country_id, options_for_select(Country.asc_order.map { |p| [p.name, p.id] }, @branch.country_id),{ include_blank: 'Select Country' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select country.", onchange: 'updateStates();', id: 'common-country' %>
         </div>
       </div>
 
       <div class="col-6">
         <div class="inptWrpr">
           <label class="cstmLbl">State</label>
-          <%= f.select :state_id, options_for_select(State.ind_states.map { |p| [p.state_name, p.id] }, @branch.state_id),{ include_blank: 'Select State' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select State."%>
+          <%= f.select :state_id, options_for_select(State.ind_states.map { |p| [p.state_name, p.id] }, @branch.state_id),{ include_blank: 'Select State' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select State.", id: 'common-state' %>
         </div>
       </div>
 

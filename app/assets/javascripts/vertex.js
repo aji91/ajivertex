@@ -17,15 +17,15 @@ $(document).on('keyup blur', '.char-only', function(){
 });
 
 function updateStates(){
-  url = "/homes/get_states?country_id="+$("#branch_country_id").val();
-  $("#branch_state_id").find('option').remove().end();
-  $("#branch_state_id").append('<option value="">State</option>');
+  url = "/homes/get_states?country_id="+$("#common-country").val();
+  $("#common-state").find('option').remove().end();
+  $("#common-state").append('<option value="">State</option>');
   $.ajax({
     method: 'get',
     url: url
   }).done(function(data){
     $.each(data, function(key, value){
-      $("#branch_state_id").append('<option value=' + key + '>' + value + '</option>');
+      $("#common-state").append('<option value=' + key + '>' + value + '</option>');
     });
   }).fail(function(){
     toastr.error('', 'States not updated. Please try to change the country.');

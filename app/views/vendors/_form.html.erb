@@ -1,0 +1,110 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= vendors_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr">Add Vendor</h2>
+  </div>
+  <div class="formWrapper">
+    <%= form_for(@vendor, url: @vendor.new_record? ? vendors_path : vendor_path(@vendor), html: { "data-parsley-validate" => true, id: 'vendor-form' }) do |f| %>
+      <div class="frmHdr">Vendor Details</div>
+      <div class="row">
+        <div class="col-12">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Vendor Name</label>
+            <%= f.text_field :name, placeholder: "Vendor Name", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter vendor name." %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">GSTIN</label>
+            <%= f.text_field :gstin, placeholder: "Enter GSTIN", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter GSTIN." %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Email</label>
+            <%= f.text_field :email, placeholder: "Email Address", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter email." %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Mobile Number</label>
+            <%= f.text_field :mobile, placeholder: "Mobile Number", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter mobile.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Landline Number</label>
+            <%= f.text_field :land_line, placeholder: "Landline Number", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter landline.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Address Line 1</label>
+            <%= f.text_field :address_1, placeholder: "Address Line 1", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter address line one.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Address Line 2</label>
+            <%= f.text_field :address_2, placeholder: "Address Line 2", "data-parsley-required" => "false", "data-parsley-required-message" => "Please enter address line two.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">City</label>
+            <%= f.text_field :city, placeholder: "City", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter city." %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Country</label>
+            <%= f.select :country_id, options_for_select(Country.asc_order.map { |p| [p.name, p.id] }, @branch.country_id),{ include_blank: 'Select Country' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select country.", onchange: 'updateStates();', id: 'common-country'  %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">State</label>
+            <%= f.select :state_id, options_for_select(State.ind_states.map { |p| [p.state_name, p.id] }, @branch.state_id),{ include_blank: 'Select State' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select State.", id: 'common-state' %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Zipcode</label>
+            <%= f.text_field :pin_code, placeholder: "Zipcode", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Zipcode.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Credit period</label>
+            <%= f.text_field :credit_period, placeholder: "Credit period", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter credit period.", class: "number-only" %>
+          </div>
+        </div>
+      </div>
+      <div class="frmHdr mt-4">Vendor Bank Details</div>
+      <div class="row">
+        <div class="col-12">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Account Number</label>
+            <%= f.text_field :account_no, placeholder: "Account Number", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter account number.", class: "number-only" %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">Bank Name</label>
+            <%= f.text_field :bank_name, placeholder: "Bank Name", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter bank name." %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="inptWrpr">
+            <label class="cstmLbl">IFSC Code</label>
+            <%= f.text_field :ifsc_no, placeholder: "IFSC Code", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter IFSC code." %>
+          </div>
+        </div>
+      </div>
+      <div class="fmBtnWrpr">
+        <button class="btn primButton form-submit">Submit</button>
+        <a class="btn outlButton" href="<%= vendors_path %>" style="width: 150px;">Cancel</a>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,89 +1,90 @@
 <div class="dbmnContainer">
-  <a class="btn bckBtn"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <a class="btn bckBtn" href="<%= product_models_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
   <div class="pgHdWrpr">
     <h2 class="pgHdr">Add Model</h2>
   </div>
   <div class="formWrapper">
-    <form action="">
-      <div class="row">
-        <div class="col-12">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Model Name</label>
-            <input type="text" placeholder="Enter Model Name">
+    <%= form_for(@product_model, url: @product_model.new_record? ? product_models_path : product_model_path(@product_model), html: { "data-parsley-validate" => true, id: 'product_model-form', multipart: true }) do |f| %>
+    <div class="row">
+      <div class="col-12">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Model Name</label>
+          <%= f.text_field :name, placeholder: "Model Name", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter model Name." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Input Range</label>
+          <%= f.text_field :input_range, placeholder: "Input Range", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter input range." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Output Range</label>
+          <%= f.text_field :output_range, placeholder: "Output Range", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter output range." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Frequency</label>
+          <%= f.text_field :frequency, placeholder: "Frequency", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter frequency." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Protection</label>
+          <%= f.text_field :protections, placeholder: "Protection", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter protections." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Kva</label>
+          <%= f.text_field :kva, placeholder: "Kva", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter kva." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Optional</label>
+          <%= f.text_field :optional, placeholder: "Optional", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter optional." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">HSN</label>
+          <%= f.text_field :hsn, placeholder: "HSN", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter HSN." %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Price</label>
+          <%= f.text_field :price, placeholder: "Price", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter price.", class: "number-only" %>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="inptWrpr">
+          <label for="">Image</label>
+          <div class="upldWrpr">
+            <input type="file" name="product_model[image]">
+            <img src="/assets/upload_image.svg" alt="">
+            <p class="m-0 mt-2">Click here to upload</p>
           </div>
         </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Input Range</label>
-            <input type="text" placeholder="Enter Input Range">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Output Range</label>
-            <input type="text" placeholder="Enter Output Range">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Frequency</label>
-            <input type="text" placeholder="Enter Frequency">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Protections</label>
-            <input type="text" placeholder="Enter Protection">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Kva</label>
-            <input type="text" placeholder="Enter Kva">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Optional</label>
-            <input type="text" placeholder="Enter Optional">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">HSN</label>
-            <input type="text" placeholder="Enter HSN">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Price</label>
-            <input type="text" placeholder="Enter Price">
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="inptWrpr">
-            <label for="">Image</label>
-            <div class="upldWrpr">
-              <input type="file">
-              <img src="/assets/upload_image.svg" alt="">
-              <p class="m-0 mt-2">Click here to upload</p>
+        <div class="row">
+          <div class="col-2">
+            <div class="upldImgCnt">
+              <button type="button" class="btn clsBtn">
+                <img src="/assets/closeIcon.svg" alt="">
+              </button>
+              <img class="upldngImg" src="/assets/sample_image.jpg" alt="">
             </div>
           </div>
-          <div class="row">
-            <div class="col-2">
-              <div class="upldImgCnt">
-                <button type="button" class="btn clsBtn"><img src="/assets/closeIcon.svg"
-                  alt=""></button>
-                  <img class="upldngImg" src="/assets/sample_image.jpg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="fmBtnWrpr">
-          <button class="btn outlButton">Cancel</button>
-          <button class="btn primButton">Add</button>
-        </div>
-      </form>
+      </div>
     </div>
+    <div class="fmBtnWrpr">
+      <button class="btn primButton form-submit">Submit</button>
+      <a class="btn outlButton" href="<%= product_models_path %>" style="width: 150px;">Cancel</a>
+    </div>
+    <% end %>
   </div>
+</div>

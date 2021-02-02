@@ -45,6 +45,6 @@ class ProductModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:product_model).permit(:name, :gstin, :email, :mobile, :address_1, :address_2, :city, :country_id, :state_id, :pin_code)
+    params.require(:product_model).permit(:name, :input_range, :output_range, :frequency, :protections, :kva, :optional, :hsn, :price, :image)
   end
 end

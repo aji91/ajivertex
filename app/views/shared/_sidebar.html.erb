@@ -80,10 +80,11 @@
   </button>
   <div class="collapse multi-collapse clpsMenu <%= settings_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample6">
     <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('categories') ? 'active' : '' %>" href="<%= categories_path %>">Categories</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('items') ? 'active' : '' %>" href="<%= items_path %>">Items</a>
     <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('product_models') ? 'active' : '' %>" href="<%= product_models_path %>">Models</a>
-    <a class="btn inrLftBtn lftNvBtn">Vendors</a>
-    <a class="btn inrLftBtn lftNvBtn">Clients</a>
-    <a class="btn inrLftBtn lftNvBtn">Users</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('vendors') ? 'active' : '' %>" href="<%= vendors_path %>">Vendors</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('clients') ? 'active' : '' %>" href="<%= clients_path %>">Clients</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('users') ? 'active' : '' %>" href="<%= users_path %>">Users</a>
     <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('branches') ? 'active' : '' %>" href="<%= branches_path %>">Branches</a>
     <a class="btn inrLftBtn lftNvBtn <%= controller_name.eql?('departments') ? 'active' : '' %>" href="<%= departments_path %>">Departments</a>
   </div>

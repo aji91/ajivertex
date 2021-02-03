@@ -47,6 +47,11 @@ gem 'carrierwave-i18n'
 gem 'wicked_pdf', '1.1.0'
 gem 'wkhtmltopdf-binary', '0.12.3.1'
 gem 'mini_magick', '~> 4.8'
+gem "cocoon"
+gem 'kaminari'
+# Excel Generation
+gem 'caxlsx'
+gem 'caxlsx_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

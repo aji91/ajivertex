@@ -1,0 +1,101 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr"><%= @client.name %></h2>
+  </div>
+  <div class="formWrapper vwWrpr">
+    <div class="frmHdr">Client Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Email</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.email %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">GSTIN</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.gstin %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Landline</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.land_line %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Mobile</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.mobile %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Address</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.address_1 %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">City</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.city %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">State</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.state&.state_name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Pincode</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.pin_code %></p>
+      </div>
+    </div>
+    <div class="frmHdr mt-5">Bank Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Account Number</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.account_no %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Bank Name</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.bank_name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">IFSC Code</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @client.ifsc_no %></p>
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <a class="btn primButton ml-auto" href="<%= edit_client_path(@client) %>">Edit</a>
+    </div>
+  </div>
+</div>

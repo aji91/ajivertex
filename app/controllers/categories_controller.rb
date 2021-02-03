@@ -4,6 +4,13 @@ class CategoriesController < ApplicationController
 
   def index
   	@cats = Category.all
+    @q = params[:search]
+    search_cats if @q.present?
+    @cats = @cats.page(params[:page]).per(20)
+  end
+
+  def search_cats
+    @cats = @cats.where("name LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -31,6 +38,15 @@ class CategoriesController < ApplicationController
     else
       flash[:error] = @cat.errors.full_messages[0]
       render :edit
+    end
+  end
+
+  def download_report
+    @cats = Category.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=Categories-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
     end
   end
 

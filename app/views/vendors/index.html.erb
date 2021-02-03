@@ -1,0 +1,49 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Vendors</h2>
+    <a class="btn primButton" href="<%= new_vendor_path %>">New Vendor</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
+    </div>
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_vendors_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>GSTIN</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Pincode</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vendors.each do |vendor| %>
+      <tr>
+        <td><%= vendor.name %></td>
+        <td><%= vendor.gstin %></td>
+        <td><%= vendor.mobile %></td>
+        <td><%= vendor.address_1 %></td>
+        <td><%= vendor.city %></td>
+        <td><%= vendor.state&.state_name %></td>
+        <td><%= vendor.pin_code %></td>
+        <td style="vertical-align: middle;">
+          <a href="<%= vendor_path(vendor) %>">Show</a>
+          <a href="<%= edit_vendor_path(vendor) %>">Edit</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

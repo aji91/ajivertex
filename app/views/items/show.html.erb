@@ -1,0 +1,108 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= items_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr">Item Details</h2>
+  </div>
+  <div class="formWrapper vwWrpr">
+    <div class="frmHdr"><%= @item.name %></div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">HSN</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.hsn %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Code</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.code %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Part number</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.part_number %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Specification</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.specification %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Remaining quantity</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.remaining_quantity %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Sell price</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.sell_price %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Purchase price</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.purchase_price %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Unit</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.unit %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Opening stock</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.opening_stock %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Minimum quantity</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.minimum_quantity %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Category</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.category&.name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Active</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @item.active? %></p>
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <a class="btn primButton ml-auto" href="<%= edit_item_path(@item) %>">Edit</a>
+    </div>
+  </div>
+</div>

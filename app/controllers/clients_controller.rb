@@ -1,9 +1,16 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_client, only: [:edit, :update]
+  before_action :set_client, only: [:edit, :update, :show]
 
   def index
   	@clients = Client.all
+    @q = params[:search]
+    search_clients if @q.present?
+    @clients = @clients.page(params[:page]).per(20)
+  end
+
+  def search_clients
+    @clients = @clients.where("name LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -20,7 +27,10 @@ class ClientsController < ApplicationController
       render :new
     end
   end
-
+  
+  def show
+  end
+  
   def edit
   end
 
@@ -31,6 +41,15 @@ class ClientsController < ApplicationController
     else
       flash[:error] = @client.errors.full_messages[0]
       render :edit
+    end
+  end
+
+  def download_report
+    @clients = Client.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=Clients-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
     end
   end
 

@@ -1,0 +1,47 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Users</h2>
+    <a class="btn primButton" href="<%= new_user_path %>">New Users</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <a class="btn outlButton smlBtn" href="<%= download_report_users_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Mobile</th>
+        <th>Role</th>
+        <th>Branch</th>
+        <th>Department</th>
+        <th>Last Sign-in</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.mobile %></td>
+        <td><%= user.role&.name %></td>
+        <td><%= user.branch&.name %></td>
+        <td><%= user.department&.name %></td>
+        <td><%= user.last_sign_in_at ? user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") : '--' %></td>
+        <td style="vertical-align: middle;">
+          <a href="<%= user_path(user) %>">Show</a>
+          <a href="<%= edit_user_path(user) %>">Edit</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

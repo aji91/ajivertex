@@ -1,0 +1,161 @@
+<div class="dbmnContainer">
+  <h2 class="pgHdr">Welcome! Johnson</h2>
+  <div class="dhbrdCardsWrpr">
+    <div class="mnCards">
+      <h5 class="crdTtle">Invoice Created</h5>
+      <div class="rtCntns imgCnts">
+        <h2 class="valCount">16</h2>
+        <img src="/assets/invoice_created.svg" alt="">
+      </div>
+    </div>
+    <div class="mnCards">
+      <h5 class="crdTtle">Purchase Entries</h5>
+      <div class="rtCntns imgCnts">
+        <h2 class="valCount">16</h2>
+        <img src="/assets/purchase_entry.svg" alt="">
+      </div>
+    </div>
+    <div class="mnCards">
+      <h5 class="crdTtle">Test Reports</h5>
+      <div class="rtCntns imgCnts">
+        <h2 class="valCount">16</h2>
+        <img src="/assets/test_report.svg" alt="">
+      </div>
+    </div>
+    <div class="mnCards">
+      <h5 class="crdTtle">Purchase</h5>
+      <div class="rtCntns imgCnts">
+        <h2 class="valCount">16</h2>
+        <img src="/assets/purchase_dashboard.svg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="chartContainer">
+    <div class="row">
+      <div class="col-6">
+        <h4 class="scndHdr">Production</h4>
+        <div id="chartdiv"></div>
+      </div>
+      <div class="col-6">
+        <h4 class="scndHdr">Purchase</h4>
+        <div id="chartdiv2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+<script>
+  am4core.ready(function () {
+    am4core.useTheme(am4themes_animated);
+    var chart = am4core.create("chartdiv", am4charts.XYChart);
+    chart.data = [{
+      "country": "Jan",
+      "visits": 80
+    }, {
+      "country": "Feb",
+      "visits": 25
+    }, {
+      "country": "Mar",
+      "visits": 60
+    }, {
+      "country": "Apr",
+      "visits": 15
+    }, {
+      "country": "May",
+      "visits": 35
+    }, {
+      "country": "Jun",
+      "visits": 40
+    }, {
+      "country": "Jul",
+      "visits": 60
+    }, {
+      "country": "Aug",
+      "visits": 11
+    }, {
+      "country": "Sep",
+      "visits": 22
+    }, {
+      "country": "Oct",
+      "visits": 65
+    }, {
+      "country": "Nov",
+      "visits": 67
+    }, {
+      "country": "Dec",
+      "visits": 49
+    }];
+
+    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "country";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.minGridDistance = 30;
+
+    categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+      if (target.dataItem && target.dataItem.index & 2 == 2) {
+        return dy + 25;
+      }
+      return dy;
+    });
+
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+    var series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueY = "visits";
+    series.dataFields.categoryX = "country";
+    series.name = "Visits";
+    series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+    series.columns.template.fillOpacity = .8;
+    series.columns.template.fill = am4core.color('#1BBAA4');
+
+    var columnTemplate = series.columns.template;
+    columnTemplate.strokeWidth = 2;
+    columnTemplate.strokeOpacity = 1;
+
+  });
+</script>
+
+
+<script>
+  am4core.ready(function () {
+    am4core.useTheme(am4themes_animated);
+    var chart = am4core.create("chartdiv2", am4charts.XYChart);
+    chart.data = [
+    { date: new Date(2019, 5, 12), value1: 50, value2: 48, previousDate: new Date(2019, 5, 5) },
+    { date: new Date(2019, 5, 13), value1: 53, value2: 51, previousDate: new Date(2019, 5, 6) },
+    { date: new Date(2019, 5, 14), value1: 56, value2: 58, previousDate: new Date(2019, 5, 7) },
+    { date: new Date(2019, 5, 15), value1: 52, value2: 53, previousDate: new Date(2019, 5, 8) },
+    { date: new Date(2019, 5, 16), value1: 48, value2: 44, previousDate: new Date(2019, 5, 9) },
+    { date: new Date(2019, 5, 17), value1: 47, value2: 42, previousDate: new Date(2019, 5, 10) },
+    { date: new Date(2019, 5, 18), value1: 59, value2: 55, previousDate: new Date(2019, 5, 11) }
+    ]
+
+    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.minGridDistance = 50;
+
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = "value1";
+    series.dataFields.dateX = "date";
+    series.strokeWidth = 2;
+    series.minBulletDistance = 10;
+    series.tooltipText = "[bold]{date.formatDate()}:[/] {value1}\n[bold]{previousDate.formatDate()}:[/] {value2}";
+    series.tooltip.pointerOrientation = "vertical";
+
+    var series2 = chart.series.push(new am4charts.LineSeries());
+    series2.dataFields.valueY = "value2";
+    series2.dataFields.dateX = "date";
+    series2.strokeWidth = 2;
+    series2.strokeDasharray = "3,4";
+    series2.stroke = series.stroke;
+
+    chart.cursor = new am4charts.XYCursor();
+    chart.cursor.xAxis = dateAxis;
+
+  });
+</script>

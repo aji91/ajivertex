@@ -1,0 +1,128 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= users_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr"><%= @user.name %></h2>
+  </div>
+  <div class="formWrapper vwWrpr">
+    <div class="frmHdr">Personal Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Email</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.email %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">User Name</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.username %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Employee Code</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.employee_code %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Mobile</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.mobile %></p>
+      </div>
+    </div>
+    <div class="frmHdr mt-5">Company Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Role</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.role&.name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Department</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.department&.name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Branch</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.branch&.name %></p>
+      </div>
+    </div>
+    <div class="frmHdr mt-5">Bank Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Account Number</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.account_no %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Bank Name</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.bank_name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">IFSC Code</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.ifsc_no %></p>
+      </div>
+    </div>
+    <div class="frmHdr mt-5">Aadhar Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Aadhar Number</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.aadhar_no %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Aadhar Image</label>
+      </div>
+      <div class="col-8 imgVwCntnr">
+        <img src="<%= @user.aadhar_file.url %>" alt="">
+      </div>
+    </div>
+    <div class="frmHdr mt-5">Pan Details</div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Pan Number</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @user.pan_no %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Pan Image</label>
+      </div>
+      <div class="col-8 imgVwCntnr">
+        <img src="<%= @user.pan_file.url %>" alt="">
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <a class="btn primButton ml-auto" href="<%= edit_user_path(@user) %>">Edit</a>
+    </div>
+  </div>
+</div>

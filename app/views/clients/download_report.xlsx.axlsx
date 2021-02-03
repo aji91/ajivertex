@@ -1,0 +1,18 @@
+wb = xlsx_package.workbook
+sheet1 = wb.add_worksheet(name: "Clients") do |sheet|
+
+  style1 = sheet.styles.add_style(:b => true, :border => { :style => :thin, :color => "001739" })
+
+  sheet.add_row ['ID', 'Name', 'GSTIN', 'Email' , 'Mobile', 'Landline', 'Address line1', 'Address line2', 'City', 'State', 'Country', 'Zipcode', 'Account no', 'Bank name', 'IFSC code'], :style => style1, :height => 13
+
+  @clients.each do |client|
+    data = [
+      client.id, client.name, client.gstin, client.email, client.mobile, client.land_line,
+      client.address_1, client.address_2, client.city, client.state&.state_name,
+      client.country&.name, client.pin_code, client.account_no,
+      client.bank_name, client.ifsc_no
+    ]
+
+    sheet.add_row data
+  end
+end

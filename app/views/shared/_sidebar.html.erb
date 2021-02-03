@@ -7,18 +7,18 @@
     <img class="navIcons" src="/assets/dashboard.svg" alt="" />
     Dashboard
   </button>
-  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+  <button class="btn lftNvBtn acrdBtn <%= sales_opend(controller_name) ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
     <p class="m-0">
       <img class="navIcons" src="/assets/sales.svg" alt="">
       Sales
     </p>
     <span class="material-icons">expand_more</span>
   </button>
-  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample1">
-    <a class="btn inrLftBtn lftNvBtn active" type="button">Estimates</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Proforma</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Orders</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Invoice</a>
+  <div class="collapse multi-collapse clpsMenu <%= sales_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample1">
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'estimates' ? 'active' : '' %>" href="<%= estimates_path %>" >Estimates</a>
+    <a class="btn inrLftBtn lftNvBtn">Proforma</a>
+    <a class="btn inrLftBtn lftNvBtn">Orders</a>
+    <a class="btn inrLftBtn lftNvBtn">Invoice</a>
   </div>
   <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
     <p class="m-0">

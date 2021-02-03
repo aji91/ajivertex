@@ -31,3 +31,15 @@ function updateStates(){
     toastr.error('', 'States not updated. Please try to change the country.');
   });
 }
+
+function updateHsn(evt) {
+   url = "/homes/get_product?pid=";
+  $.ajax({
+    method: 'get',
+    url: url
+  }).done(function(data){
+    console.log(data.hsn);
+  }).fail(function(){
+    toastr.error('', 'Product not found.');
+  });
+}

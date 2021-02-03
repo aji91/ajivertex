@@ -40,13 +40,13 @@
         <div class="col-6">
           <div class="inptWrpr">
             <label class="cstmLbl">Address Line 1</label>
-            <%= f.text_field :address_1, placeholder: "Address Line 1", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter address line one.", class: "number-only" %>
+            <%= f.text_field :address_1, placeholder: "Address Line 1", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter address line one." %>
           </div>
         </div>
         <div class="col-6">
           <div class="inptWrpr">
             <label class="cstmLbl">Address Line 2</label>
-            <%= f.text_field :address_2, placeholder: "Address Line 2", "data-parsley-required" => "false", "data-parsley-required-message" => "Please enter address line two.", class: "number-only" %>
+            <%= f.text_field :address_2, placeholder: "Address Line 2", "data-parsley-required" => "false", "data-parsley-required-message" => "Please enter address line two." %>
           </div>
         </div>
         <div class="col-6">
@@ -58,13 +58,13 @@
         <div class="col-6">
           <div class="inptWrpr">
             <label class="cstmLbl">Country</label>
-            <%= f.select :country_id, options_for_select(Country.asc_order.map { |p| [p.name, p.id] }, @branch.country_id),{ include_blank: 'Select Country' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select country.", onchange: 'updateStates();', id: 'common-country'  %>
+            <%= f.select :country_id, options_for_select(Country.asc_order.map { |p| [p.name, p.id] }, @client.country_id),{ include_blank: 'Select Country' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select country.", onchange: 'updateStates();', id: 'common-country'  %>
           </div>
         </div>
         <div class="col-6">
           <div class="inptWrpr">
             <label class="cstmLbl">State</label>
-            <%= f.select :state_id, options_for_select(State.ind_states.map { |p| [p.state_name, p.id] }, @branch.state_id),{ include_blank: 'Select State' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select State.", id: 'common-state' %>
+            <%= f.select :state_id, options_for_select(State.ind_states.map { |p| [p.state_name, p.id] }, @client.state_id),{ include_blank: 'Select State' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select State.", id: 'common-state' %>
           </div>
         </div>
         <div class="col-6">

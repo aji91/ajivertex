@@ -1,0 +1,18 @@
+wb = xlsx_package.workbook
+sheet1 = wb.add_worksheet(name: "Items") do |sheet|
+
+  style1 = sheet.styles.add_style(:b => true, :border => { :style => :thin, :color => "001739" })
+
+  sheet.add_row ['ID', 'Name', 'Category', 'HSN', 'Code', 'Part number', 'Specification', 'Remaining quantity', 'Sell price', 'Purchase price', 'Unit', 'Opening stock', 'Minimum quantity', 'Active'], :style => style1, :height => 13
+
+  @items.each do |item|
+    data = [
+      item.id, item.name, item.category&.name, item.hsn,
+      item.code, item.part_number, item.specification, item.remaining_quantity,
+      item.sell_price, item.purchase_price, item.unit, item.opening_stock,
+      item.minimum_quantity, item.active? ? 'YES' : 'NO'
+    ]
+
+    sheet.add_row data
+  end
+end

@@ -1,9 +1,16 @@
 class ProductModelsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_model, only: [:edit, :update]
+  before_action :set_model, only: [:edit, :update, :show]
 
   def index
   	@product_models = ProductModel.all
+    @q = params[:search]
+    search_product_models if @q.present?
+    @product_models = @product_models.page(params[:page]).per(20)
+  end
+
+  def search_product_models
+    @product_models = @product_models.where("name LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -21,6 +28,9 @@ class ProductModelsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -31,6 +41,15 @@ class ProductModelsController < ApplicationController
     else
       flash[:error] = @product_model.errors.full_messages[0]
       render :edit
+    end
+  end
+
+  def download_report
+    @product_models = ProductModel.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=ProductModels-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
     end
   end
 

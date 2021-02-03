@@ -5,20 +5,58 @@ Rails.application.routes.draw do
   resources :homes, only: [] do
   	collection do
   		get :get_states
+      get :get_product
+      get :find_tax
   	end
   end
-  resources :categories, except: [:destroy]
-  resources :items, except: [:destroy]
-  resources :branches, except: [:destroy]
+  
+  resources :categories, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+  
+  resources :items, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+  
+  resources :branches, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+
   resources :departments, except: [:destroy]
-  resources :product_models, except: [:destroy]
-  resources :clients, except: [:destroy]
-  resources :vendors, except: [:destroy]
-  resources :users, except: [:destroy]
+
+  resources :product_models, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+
+  resources :clients, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+
+  resources :vendors, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+
+  resources :users, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
   
   resources :estimates, except: [:destroy] do
     member do
-      post: :update_status
+      post :update_status
     end
   end
   

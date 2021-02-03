@@ -20,4 +20,5 @@
 //= require Chart.min
 //= require ckeditor/init
 //= require select2.min
+//= require cocoon
 //= require vertex

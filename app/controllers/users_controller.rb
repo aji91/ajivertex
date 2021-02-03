@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :show]
 
   def index
   	@users = User.all
@@ -19,6 +19,9 @@ class UsersController < ApplicationController
       flash[:error] = @user.errors.full_messages[0]
       render :new
     end
+  end
+
+  def show
   end
 
   def edit
@@ -45,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :gstin, :email, :mobile, :land_line, :address_1, :address_2, :city, :country_id, :state_id, :pin_code, :account_no, :bank_name, :ifsc_no, :credit_period)
+    params.require(:user).permit(:name, :username, :email, :mobile, :employee_code, :department_id, :branch_id, :role_id, :account_no, :bank_name, :ifsc_no, :aadhar_no, :aadhar_file, :pan_no, :pan_file, :password, :password_confirmation)
   end
 end

@@ -1,0 +1,48 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Estimate</h2>
+    <a class="btn primButton" href="<%= new_estimate_path %>">New Estimate</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <button class="btn outlButton smlBtn">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </button>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Number</th>
+        <th>Client</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+        <th>Order Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @estimates.each do |estimate| %>
+      <tr>
+        <td>01</td>
+        <td>EST/05/22021</td>
+        <td>Universal Electronics Enterprises</td>
+        <td>53,550.00</td>
+        <td>22-01-2020</td>
+        <td>Approved</td>
+        <td>
+          <a href="">View</a>
+        </td>
+        <td>
+          <a href="">Order Note</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,43 @@
+<%= f.hidden_field :tax_id %>
+<table class="table cstmTable">
+<tr>
+  <td>
+    <div class="inptWrpr">
+      <%= f.select :product_model_id, options_for_select(ProductModel.all.map { |p| [p.name, p.id] }, f.object.product_model_id),{ include_blank: 'Select product' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select product.", onchange: 'updateHsn(this);' %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.text_field :hsn, "data-parsley-required" => "true", disabled: true, class: 'pro-hsn' %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.text_field :quantity, "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter quantity", class: 'number-only' %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.text_field :rate, "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter rate", class: 'number-only' %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.select :cgst, options_for_select(Tax.cgst.map { |p| [p.name, p.id] }, f.object.cgst),{ include_blank: 'Select CSGT' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select CSGT." %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.text_field :sgst, disabled: true %>
+    </div>
+  </td>
+  <td>
+    <div class="inptWrpr">
+      <%= f.text_field :amount, "data-parsley-required" => "true", disabled: true %>
+    </div>
+  </td>
+  <td style="vertical-align: middle;">
+    <%= link_to_remove_association 'Remove'.html_safe, f %>
+  </td>
+</tr>
+</table>

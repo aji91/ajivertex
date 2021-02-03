@@ -1,5 +1,3 @@
 class Country < ApplicationRecord
-  def self.asc_order
-    order(name: :asc)
-  end
+	scope :asc_order, -> { order(name: :asc) }
 end

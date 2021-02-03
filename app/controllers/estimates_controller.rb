@@ -34,7 +34,7 @@ class EstimatesController < ApplicationController
         render :edit
       end
     else
-      flash[:error] = "Estimate already approved."
+      flash[:error] = "Estimate already approved. You can not edit now."
     end
   end
 
@@ -52,6 +52,9 @@ class EstimatesController < ApplicationController
   end
 
   def estimate_params
-    params.require(:estimate).permit(:name, :gstin, :email, :mobile, :address_1, :address_2, :city, :country_id, :state_id, :pin_code)
+    params.require(:estimate).permit(
+      :client_id, :code, :terms, :notes, :sub_total, :cgst, :sgst, :total,
+      selected_models_attributes: [:id, :tax_id, :product_model_id, :hsn, :quantity, :rate, :cgst, :sgst, :amount]
+    )
   end
 end

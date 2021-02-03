@@ -4,6 +4,13 @@ class BranchesController < ApplicationController
 
   def index
   	@branches = Branch.all
+    @q = params[:search]
+    search_branches if @q.present?
+    @branches = @branches.page(params[:page]).per(20)
+  end
+
+  def search_branches
+    @branches = @branches.where("name LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -31,6 +38,15 @@ class BranchesController < ApplicationController
     else
       flash[:error] = @branch.errors.full_messages[0]
       render :edit
+    end
+  end
+
+  def download_report
+    @branches = Branch.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=Branches-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
     end
   end
 

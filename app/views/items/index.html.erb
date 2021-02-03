@@ -1,0 +1,45 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Items</h2>
+    <a class="btn primButton" href="<%= new_item_path %>">New Item</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
+    </div>
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_items_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>HSN</th>
+        <th>Code</th>
+        <th>Part Number</th>
+        <th>Active</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.hsn %></td>
+        <td><%= item.code %></td>
+        <td><%= item.part_number %></td>
+        <td><%= item.active? %></td>
+        <td>
+          <a href="<%= item_path(item) %>">Show</a>
+          <a href="<%= edit_item_path(item) %>">Edit</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

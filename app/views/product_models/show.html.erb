@@ -1,0 +1,91 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= product_models_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr">Model Details</h2>
+  </div>
+  <div class="formWrapper vwWrpr">
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Model Name</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">HSN</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.hsn %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Price</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.price %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Input Range</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.input_range %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Output Range</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.output_range %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Frequency</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.frequency %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Protections</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.protections %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Kva</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.kva %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Optional</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @product_model.optional %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Image</label>
+      </div>
+      <div class="col-8 imgVwCntnr">
+        <img src="<%= @product_model.image.url %>" alt="">
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <a class="btn primButton ml-auto" href="<%= edit_product_model_path(@product_model) %>">Edit</a>
+    </div>
+  </div>
+</div>

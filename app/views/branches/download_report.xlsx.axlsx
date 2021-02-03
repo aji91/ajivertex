@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+sheet1 = wb.add_worksheet(name: "Branches") do |sheet|
+
+  style1 = sheet.styles.add_style(:b => true, :border => { :style => :thin, :color => "001739" })
+
+  sheet.add_row ['ID', 'Name', 'GSTIN', 'Email' , 'Mobile', 'Address line1', 'Address line2', 'City', 'State', 'Country', 'Zipcode'], :style => style1, :height => 13
+
+  @branches.each do |branch|
+    data = [
+      branch.id, branch.name, branch.gstin, branch.email, branch.mobile,
+      branch.address_1, branch.address_2, branch.city, branch.state&.state_name,
+      branch.country&.name, branch.pin_code
+    ]
+
+    sheet.add_row data
+  end
+end

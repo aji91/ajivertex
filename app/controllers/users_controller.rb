@@ -4,6 +4,13 @@ class UsersController < ApplicationController
 
   def index
   	@users = User.all
+    @q = params[:search]
+    search_users if @q.present?
+    @users = @users.page(params[:page]).per(20)
+  end
+
+  def search_users
+    @users = @users.where("name LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -34,6 +41,15 @@ class UsersController < ApplicationController
     else
       flash[:error] = @user.errors.full_messages[0]
       render :edit
+    end
+  end
+
+  def download_report
+    @users = User.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=Users-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
     end
   end
 

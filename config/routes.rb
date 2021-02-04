@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :estimates, except: [:destroy] do
     member do
       post :update_status
+      get :order_notes
     end
   end
   

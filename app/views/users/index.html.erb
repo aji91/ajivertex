@@ -4,10 +4,12 @@
     <a class="btn primButton" href="<%= new_user_path %>">New Users</a>
   </div>
   <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
     <div class="srchWrpr d-flex align-items-center">
       <span class="material-icons">search</span>
-      <input type="search">
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
     </div>
+    <% end %>
     <a class="btn outlButton smlBtn" href="<%= download_report_users_path(format: 'xlsx') %>">
       <img src="/assets/export_icon.svg" alt="">
       Export

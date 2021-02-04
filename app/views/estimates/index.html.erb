@@ -29,17 +29,18 @@
     <tbody>
       <% @estimates.each do |estimate| %>
       <tr>
-        <td>01</td>
-        <td>EST/05/22021</td>
-        <td>Universal Electronics Enterprises</td>
-        <td>53,550.00</td>
-        <td>22-01-2020</td>
-        <td>Approved</td>
+        <td><%= estimate.id %></td>
+        <td><%= estimate.code %></td>
+        <td><%= estimate.client&.name %></td>
+        <td><%= estimate.total %></td>
+        <td><%= estimate.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= estimate.approved? ? 'Approved' : '--' %></td>
         <td>
-          <a href="">View</a>
+          <a href="<%= estimate_path(estimate) %>">View</a>
+          <a href="<%= edit_estimate_path(estimate) %>">Edit</a>
         </td>
         <td>
-          <a href="">Order Note</a>
+          <a href="<%= order_notes_estimate_path(estimate) %>">Order Note</a>
         </td>
       </tr>
       <% end %>

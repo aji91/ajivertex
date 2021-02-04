@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_estimate, only: [:edit, :update]
+  before_action :set_estimate, only: [:edit, :update, :show, :order_notes]
 
   def index
   	@estimates = Estimate.all
@@ -24,8 +24,11 @@ class EstimatesController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
-    if @estimate.approved?
+    if !@estimate.approved?
       if @estimate.update_attributes(estimate_params)
         flash[:notice] = 'Estimate successfully updated.'
         redirect_to estimates_path
@@ -41,6 +44,9 @@ class EstimatesController < ApplicationController
   def update_status
   end
 
+  def order_notes
+  end
+
   private
 
   def set_estimate
@@ -54,7 +60,7 @@ class EstimatesController < ApplicationController
   def estimate_params
     params.require(:estimate).permit(
       :client_id, :code, :terms, :notes, :sub_total, :cgst, :sgst, :total,
-      selected_models_attributes: [:id, :tax_id, :product_model_id, :hsn, :quantity, :rate, :cgst, :sgst, :amount]
+      selected_models_attributes: [:id, :tax_id, :product_model_id, :hsn, :quantity, :rate, :cgst, :sgst, :amount, :_destroy]
     )
   end
 end

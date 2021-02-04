@@ -1,0 +1,124 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= estimates_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr"><%= @estimate.code %></h2>
+    <a class="btn outlButton smlBtn ml-3" href="javascript:void(0);">
+      <img src="/assets/pdf.svg" alt="">
+      Download Pdf
+    </a>
+  </div>
+  <div class="formWrapper vwWrpr">
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Address :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.client&.full_address %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">City :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.client&.city %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Pincode :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.client&.pin_code %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Delivery date :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Remarks :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0">Lorem ipsum dolor sit amet</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Note :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.notes %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">User :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0">02</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Approved</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.approved? ? 'YES' : 'NO' %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Approved by :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.approved_user %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Client :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"><%= @estimate.client&.name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label class="cstmLbl">Sale :</label>
+      </div>
+      <div class="col-8">
+        <p class="m-0"></p>
+      </div>
+    </div>
+    <table class="table cstmTable">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th>Product</th>
+          <th>HSN #</th>
+          <th>Quantity</th>
+          <th>Rate</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @estimate.selected_models.each_with_index do |sm, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= sm.product_model&.name %></td>
+          <td><%= sm.hsn %></td>
+          <td><%= sm.quantity %></td>
+          <td><%= number_to_indian_rupee(sm.rate) %></td>
+          <td><%= number_to_indian_rupee(sm.amount) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

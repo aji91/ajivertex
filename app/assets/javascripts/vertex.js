@@ -33,13 +33,73 @@ function updateStates(){
 }
 
 function updateHsn(evt) {
-   url = "/homes/get_product?pid=";
+  var pid = $(evt).val();
+  url = "/homes/get_product?pid="+pid;
   $.ajax({
     method: 'get',
     url: url
   }).done(function(data){
-    console.log(data.hsn);
+    $(evt).parent().parent().next().children().children().val(data.hsn);
   }).fail(function(){
     toastr.error('', 'Product not found.');
   });
 }
+
+function findSgst(evt){
+  var tid = $(evt).val();
+  url = "/homes/find_tax?tid="+tid;
+  $.ajax({
+    method: 'get',
+    url: url
+  }).done(function(data){
+    $(evt).parent().parent().next().children().children().val(data.sgst);
+    calculate_row();
+  }).fail(function(){
+    toastr.error('', 'Tax not found.');
+  });
+}
+
+$(document).on('blur', '.quantity_class', function(){
+  calculate_row();
+});
+
+$(document).on('blur', '.rate_class', function(){
+  calculate_row();
+});
+
+function calculate_row(){
+  var subtotal = 0;
+  var cgst = 0;
+  var sgst = 0;
+  $('.total_cal_tr').each(function(ele){
+    var quan = $(this).find('.quantity_class').val();
+    var rate = $(this).find('.rate_class').val();
+    var cgst_v = $(this).find('.cgst_class').val();
+    var cg_val;
+    var total;
+    if (quan != '' && rate != '' && cgst_v != ''){
+      quan = parseFloat(quan);
+      rate = parseFloat(rate);
+      cgst_split = cgst_v.split('-');
+      total = quan*rate;
+      $(this).find('.amount_class').val(total);
+      subtotal = (subtotal + total);
+      $('#estimate_sub_total').val(subtotal);
+      cg_val = total * parseFloat(cgst_split[1]) / 100;
+      cgst = cgst + cg_val;
+      if (cgst_split[0] != 'IGST'){
+        sgst = sgst + cg_val;
+      }
+
+    }
+  });
+  $('#estimate_cgst').val(cgst);
+  $('#estimate_sgst').val(sgst);
+  $('#estimate_total').val(subtotal + cgst + sgst);
+}
+
+$(document).on('click', '.remove-model', function(){
+  $(this).parent().parent().parent().parent().find('.destroy_model_c').val('true');
+  $(this).closest('.total_cal_tr').remove();
+  calculate_row();
+});

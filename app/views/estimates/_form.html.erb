@@ -7,7 +7,7 @@
     <%= form_for(@estimate, url: @estimate.new_record? ? estimates_path : estimate_path(@estimate), html: { "data-parsley-validate" => true, id: 'estimate-form' }) do |f| %>
     <div class="topContainer d-flex align-items-start justify-content-between">
       <div class="lftContainer">
-        <h5 class="scndHdr">GwayERP</h5>
+        <h5 class="scndHdr">Vertex</h5>
       </div>
       <div class="ritContainer">
         <div class="inrFle d-flex align-items-center">
@@ -34,14 +34,14 @@
     <table class="table cstmTable">
       <thead>
         <tr>
-          <th style="width: 30%;">Product</th>
-          <th>HSN #</th>
-          <th>Quantity</th>
-          <th>Rate</th>
-          <th style="width: 12%;">CGST/IGST</th>
-          <th style="width: 12%;">SGST</th>
-          <th>Amount</th>
-          <th>Action</th>
+          <th style="width: 20%;">Product</th>
+          <th style="width: 10%;">HSN #</th>
+          <th style="width: 10%;">Quantity</th>
+          <th style="width: 10%;">Rate</th>
+          <th style="width: 15%;">CGST/IGST</th>
+          <th style="width: 15%;">SGST</th>
+          <th style="width: 10%;">Amount</th>
+          <th style="width: 10%;">Action</th>
         </tr>
       </thead>
     </table>
@@ -66,19 +66,19 @@
       <div class="col-4">
         <div class="inptWrpr lblLft">
           <label for="">Sub Total</label>
-          <%= f.text_field :sub_total, placeholder: "Sub Total", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Sub Total", disabled: true %>
+          <%= f.text_field :sub_total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Sub Total", readonly: true %>
         </div>
         <div class="inptWrpr lblLft">
           <label for="">CGST</label>
-          <%= f.text_field :cgst, placeholder: "Sub Total", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter CGST", disabled: true %>
+          <%= f.text_field :cgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter CGST", readonly: true %>
         </div>
         <div class="inptWrpr lblLft">
           <label for="">SGST</label>
-          <%= f.text_field :sgst, placeholder: "Sub Total", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter SGST", disabled: true %>
+          <%= f.text_field :sgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter SGST", readonly: true %>
         </div>
         <div class="inptWrpr lblLft">
           <label for="">Total</label>
-          <%= f.text_field :total, placeholder: "Sub Total", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter total", disabled: true %>
+          <%= f.text_field :total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter total", readonly: true %>
         </div>
       </div>
     </div>

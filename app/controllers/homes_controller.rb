@@ -11,10 +11,11 @@ class HomesController < ApplicationController
   end
 
   def find_tax
-  	tax = Tax.find_by_id(params[:tid])
+  	tax = Tax.cgst.find_by_name(params[:tid])
   	if tax
-  		tax.name.split('-')
-  		render json: { success: false }
+  		aa = tax.name.split('-')[1]
+      sgst = Tax.sgst.find_by_name("SGST-#{aa}")
+  		render json: { success: false, sgst: sgst ? sgst.name : '' }
   	else
   		render json: { success: false }
   	end

@@ -6,4 +6,8 @@ module ApplicationHelper
 	def sales_opend(cname)
 		['estimates'].include?(cname)
 	end
+
+	def number_to_indian_rupee(rupees)
+		number_to_indian_currency(rupees)
+	end
 end

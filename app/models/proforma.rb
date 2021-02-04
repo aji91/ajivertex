@@ -1,0 +1,2 @@
+class Proforma < ApplicationRecord
+end

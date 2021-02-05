@@ -6,3 +6,9 @@ order - as many store request
 store_request - has many job card
 job_card has many test reports
 order has many invoices
+
+rate prepopulate
+rate update in setti
+EST/2021/0001
+USER - wHO ENTERS DETAILS
+sale change to Status : CUrrent entry

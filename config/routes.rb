@@ -61,7 +61,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :proformas, except: [:destroy]
+  resources :proformas, except: [:destroy] do
+    member do
+      post :update_status
+      get :order_notes
+    end
+  end
+  
   resources :sale_orders, except: [:destroy]
   resources :invoices, except: [:destroy]
 end

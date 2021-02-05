@@ -1,0 +1,44 @@
+<table class="table cstmTable model-over-class">
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :_destroy, value: 'false', class: 'destroy_model_c' %>
+  <tr class="total_cal_tr">
+    <td style="width: 20%;">
+      <div class="inptWrpr">
+        <%= f.select :product_model_id, options_for_select(ProductModel.all.map { |p| [p.name, p.id] }, f.object.product_model_id),{ include_blank: '' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select product.", onchange: 'updateHsn(this);' %>
+      </div>
+    </td>
+    <td style="width: 10%;">
+      <div class="inptWrpr">
+        <%= f.text_field :hsn, "data-parsley-required" => "true", readonly: true, class: 'pro-hsn' %>
+      </div>
+    </td>
+    <td style="width: 10%;">
+      <div class="inptWrpr">
+        <%= f.text_field :quantity, "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter quantity", class: 'number-only quantity_class' %>
+      </div>
+    </td>
+    <td style="width: 10%;">
+      <div class="inptWrpr">
+        <%= f.text_field :rate, "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter rate", class: 'number-only rate_class' %>
+      </div>
+    </td>
+    <td style="width: 15%;">
+      <div class="inptWrpr">
+        <%= f.select :cgst, options_for_select(Tax.cgst_and_igst.map { |p| [p.name, p.name] }, f.object.cgst),{ include_blank: '' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select CSGT.", class: 'cgst_class', onchange: 'findSgst(this)' %>
+      </div>
+    </td>
+    <td style="width: 15%;">
+      <div class="inptWrpr">
+        <%= f.text_field :sgst, value: f.object.sgst, readonly: true %>
+      </div>
+    </td>
+    <td style="width: 10%;">
+      <div class="inptWrpr">
+        <%= f.text_field :amount, "data-parsley-required" => "true", readonly: true, class: 'amount_class' %>
+      </div>
+    </td>
+    <td style="width: 10%;vertical-align: middle;">
+      <%= link_to_remove_association 'Remove', f, class: 'remove-model' %>
+    </td>
+  </tr>
+</table>

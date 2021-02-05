@@ -4,7 +4,7 @@ module ApplicationHelper
 	end
 
 	def sales_opend(cname)
-		['estimates'].include?(cname)
+		['estimates', 'proformas'].include?(cname)
 	end
 
 	def number_to_indian_rupee(rupees)

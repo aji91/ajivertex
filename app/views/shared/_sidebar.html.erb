@@ -16,7 +16,7 @@
   </button>
   <div class="collapse multi-collapse clpsMenu <%= sales_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample1">
     <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'estimates' ? 'active' : '' %>" href="<%= estimates_path %>" >Estimates</a>
-    <a class="btn inrLftBtn lftNvBtn">Proforma</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'proformas' ? 'active' : '' %>" href="<%= proformas_path %>">Proforma</a>
     <a class="btn inrLftBtn lftNvBtn">Orders</a>
     <a class="btn inrLftBtn lftNvBtn">Invoice</a>
   </div>

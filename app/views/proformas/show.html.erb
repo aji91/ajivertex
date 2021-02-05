@@ -1,0 +1,93 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= proformas_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Sales Order</h2>
+    <div class="d-flex align-items-center">
+      <a class="btn outlButton smlBtn ml-3" href="javascript:void(0);">
+        <img src="/assets/pdf.svg" alt="">
+        Download Pdf
+      </a>
+    </div>
+  </div>
+  <div class="formWrapper">
+    <div class="topContainer prvwWrpr d-flex align-items-start justify-content-end">
+      <div class="ritContainer">
+        <div class="dtlCntnr">
+          <label for="">proforma No. :</label>
+          <p><%= @proforma.code %></p>
+        </div>
+        <div class="dtlCntnr">
+          <label for="">Date :</label>
+          <p><%= @proforma.created_at.strftime("%d/%m/%Y") %></p>
+        </div>
+        <div class="dtlCntnr">
+          <label for="">Payment Type :</label>
+          <p>Cash</p>
+        </div>
+        <div class="dtlCntnr">
+          <label for="">Payment Status :</label>
+          <p><%= @proforma.payment_status %></p>
+        </div>
+      </div>
+    </div>
+    <table class="table cstmTable">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th style="width: 30%;">Product</th>
+          <th>HSN #</th>
+          <th>Quantity</th>
+          <th>Rate</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @proforma.selected_models.each_with_index do |sm, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= sm.product_model&.name %></td>
+          <td><%= sm.hsn %></td>
+          <td><%= sm.quantity %></td>
+          <td><%= number_to_indian_rupee(sm.rate) %></td>
+          <td><%= number_to_indian_rupee(sm.amount) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="brdrTp mt-4"></div>
+    <div class="row mt-4 align-items-end justify-content-end">
+      <div class="col-4">
+        <div class="inptWrpr lblLft">
+          <label for="">Sub Total</label>
+          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.sub_total) %>">
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">CGST</label>
+          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.cgst) %>">
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">SGST</label>
+          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.sgst) %>">
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">Total</label>
+          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.total) %>">
+        </div>
+      </div>
+    </div>
+    <div class="row infoVw">
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label for="">Terms</label>
+          <p><%= @proforma.terms.html_safe %></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label for="">Notes</label>
+          <p><%= @proforma.notes.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

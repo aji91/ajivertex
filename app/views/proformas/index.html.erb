@@ -1,0 +1,49 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Proforma</h2>
+    <a class="btn primButton" href="<%= new_proforma_path %>">New Proforma</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search">
+    </div>
+    <button class="btn outlButton smlBtn">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </button>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Number</th>
+        <th>Client</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+        <th>Order Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proformas.each do |proforma| %>
+      <tr>
+        <td><%= proforma.id %></td>
+        <td><%= proforma.code %></td>
+        <td><%= proforma.client&.name %></td>
+        <td><%= proforma.total %></td>
+        <td><%= proforma.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= proforma.approved? ? 'Approved' : '--' %></td>
+        <td>
+          <a href="<%= proforma_path(proforma) %>">View</a>
+          <a href="<%= edit_proforma_path(proforma) %>">Edit</a>
+        </td>
+        <td>
+          <a href="<%= order_notes_proforma_path(proforma) %>">Order Note</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

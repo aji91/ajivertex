@@ -25,7 +25,7 @@ class ProformasController < ApplicationController
   end
 
   def update
-    if @proforma.approved?
+    if !@proforma.approved?
       if @proforma.update_attributes(proforma_params)
         flash[:notice] = 'Proforma successfully updated.'
         redirect_to proformas_path
@@ -41,6 +41,9 @@ class ProformasController < ApplicationController
   def update_status
   end
 
+  def order_notes
+  end
+
   private
 
   def set_proforma
@@ -52,6 +55,9 @@ class ProformasController < ApplicationController
   end
 
   def proforma_params
-    params.require(:proforma).permit(:name, :gstin, :email, :mobile, :address_1, :address_2, :city, :country_id, :state_id, :pin_code)
+    params.require(:proforma).permit(
+      :client_id, :code, :terms, :notes, :sub_total, :cgst, :sgst, :total,
+      selected_models_attributes: [:id, :tax_id, :product_model_id, :hsn, :quantity, :rate, :cgst, :sgst, :amount, :_destroy]
+    )
   end
 end

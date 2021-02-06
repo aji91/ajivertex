@@ -3,10 +3,10 @@
     <img src="/assets/logo.svg" alt="">
     <div class="material-icons mnuTglIcon" onclick="sideBarToggle()">menu</div>
   </div>
-  <button class="btn lftNvBtn active" type="button">
+  <a class="btn lftNvBtn <%= controller_name == 'dashboards' ? 'active' : '' %>" href="/">
     <img class="navIcons" src="/assets/dashboard.svg" alt="" />
     Dashboard
-  </button>
+  </a>
   <button class="btn lftNvBtn acrdBtn <%= sales_opend(controller_name) ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
     <p class="m-0">
       <img class="navIcons" src="/assets/sales.svg" alt="">
@@ -44,18 +44,18 @@
     <a class="btn inrLftBtn lftNvBtn" type="button">Store Request</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Quality Check Reports</a>
   </div>
-  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
+  <button class="btn lftNvBtn acrdBtn <%= controller_name == 'reports' ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
     <p class="m-0">
       <img class="navIcons" src="/assets/report.svg" alt="">
       Reports
     </p>
     <span class="material-icons">expand_more</span>
   </button>
-  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample4">
-    <a class="btn inrLftBtn lftNvBtn active" type="button">Logs</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Work Flow</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Approval</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Email Logs</a>
+  <div class="collapse multi-collapse clpsMenu <%= controller_name == 'reports' ? 'show' : '' %>" id="multiCollapseExample4">
+    <a class="btn inrLftBtn lftNvBtn <%= action_name == 'approvals' ? 'show' : '' %>" href="<%= approvals_reports_path %>">Approval</a>
+    <a class="btn inrLftBtn lftNvBtn">Logs</a>
+    <a class="btn inrLftBtn lftNvBtn">Work Flow</a>
+    <a class="btn inrLftBtn lftNvBtn">Email Logs</a>
   </div>
   <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">
     <p class="m-0">

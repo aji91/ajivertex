@@ -6,28 +6,19 @@
   <div class="formWrapper">
     <%= form_for(@estimate, url: @estimate.new_record? ? estimates_path : estimate_path(@estimate), html: { "data-parsley-validate" => true, id: 'estimate-form' }) do |f| %>
     <div class="topContainer d-flex align-items-start justify-content-between">
-      <div class="lftContainer">
-        <h5 class="scndHdr">Vertex</h5>
-      </div>
-      <div class="ritContainer">
-        <div class="inrFle d-flex align-items-center">
-          <label for="" class="mr-2">Estimate No. :</label>
-          <p>
-            <%= f.text_field :code, placeholder: "Estimate No", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Estimate No." %>
-          </p>
-        </div>
-        <div class="inrFle d-flex align-items-center">
-          <label for="" class="mr-2">Date :</label>
-          <p><%= @estimate.created_at ? @estimate.created_at.strftime("%d/%m/%Y") :  Time.now.strftime("%d/%m/%Y") %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-6">
         <div class="inptWrpr">
           <label class="cstmLbl">Client Name</label>
           <%= f.select :client_id, options_for_select(Client.asc_order.map { |p| [p.name, p.id] }, @estimate.client_id),{ include_blank: 'Select Client' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select client." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Estimate No. :</label>
+          <%= f.text_field :code, value: @estimate.code || @estimate.new_code, placeholder: "Estimate No", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Estimate No.", readonly: true %>
+        </div>
+        <div class="inptWrpr">
+          <p>Date : <%= @estimate.created_at ? @estimate.created_at.strftime("%d/%m/%Y") :  Time.now.strftime("%d/%m/%Y") %></p>
         </div>
       </div>
     </div>
@@ -53,15 +44,19 @@
     </div>
     <div class="brdrTp mt-4"></div>
     <div class="row mt-4 align-items-end">
-      <div class="col-8 pr-5">
+      <div class="col-6">
         <div class="inptWrpr">
           <label for="">Terms</label>
           <%= f.cktext_area :terms, value: @estimate.terms, class: 'ckeditor', ckeditor: {toolbar: []} %>
         </div>
+      </div>
+      <div class="col-6">
         <div class="inptWrpr">
           <label for="">Notes</label>
           <%= f.cktext_area :notes, value: @estimate.notes, class: 'ckeditor', ckeditor: {toolbar: []} %>
         </div>
+      </div>
+      <div class="col-8">
       </div>
       <div class="col-4">
         <div class="inptWrpr lblLft">

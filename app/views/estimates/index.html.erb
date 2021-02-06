@@ -23,7 +23,6 @@
         <th>Date</th>
         <th>Status</th>
         <th>Action</th>
-        <th>Order Note</th>
       </tr>
     </thead>
     <tbody>
@@ -34,13 +33,17 @@
         <td><%= estimate.client&.name %></td>
         <td><%= estimate.total %></td>
         <td><%= estimate.created_at.strftime("%d-%m-%Y") %></td>
-        <td><%= estimate.approved? ? 'Approved' : '--' %></td>
+        <td>
+          <% if estimate.addressed? %>
+          <%= estimate.status %>
+          <% else %>
+          <a href="<%= approve_estimate_path(estimate) %>" data-method="post">Approve</a>
+          <a href="<%= reject_estimate_path(estimate) %>" data-method="post" class="text-danger ml-4">Reject</a>
+          <% end %>
+        </td>
         <td>
           <a href="<%= estimate_path(estimate) %>">View</a>
           <a href="<%= edit_estimate_path(estimate) %>">Edit</a>
-        </td>
-        <td>
-          <a href="<%= order_notes_estimate_path(estimate) %>">Order Note</a>
         </td>
       </tr>
       <% end %>

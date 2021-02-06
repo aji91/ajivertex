@@ -56,7 +56,8 @@ Rails.application.routes.draw do
   
   resources :estimates, except: [:destroy] do
     member do
-      post :update_status
+      post :approve
+      post :reject
       get :order_notes
     end
   end
@@ -70,4 +71,10 @@ Rails.application.routes.draw do
   
   resources :sale_orders, except: [:destroy]
   resources :invoices, except: [:destroy]
+  
+  resources :reports, only: [] do
+    collection do
+      get :approvals
+    end
+  end
 end

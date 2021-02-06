@@ -1,6 +1,7 @@
 class CreateEstimates < ActiveRecord::Migration[5.2]
   def change
     create_table :estimates do |t|
+      t.integer :created_by
       t.integer :client_id
       t.string :code
       t.text :terms
@@ -11,6 +12,8 @@ class CreateEstimates < ActiveRecord::Migration[5.2]
       t.string :total
       t.boolean :approved, default: false
       t.integer :approved_by
+      t.boolean :rejected, default: false
+      t.integer :rejected_by
       t.timestamps
     end
   end

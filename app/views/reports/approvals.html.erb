@@ -1,0 +1,165 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Approval</h2>
+  </div>
+
+  <ul class="nav cstmNavPills nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="pills-Estimates-tab" data-toggle="pill" href="#pills-Estimates"
+      role="tab" aria-controls="pills-Estimates" aria-selected="true">Estimates</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-Invoice-tab" data-toggle="pill" href="#pills-Invoice"
+      role="tab" aria-controls="pills-Invoice" aria-selected="false">Invoice</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-orderNotes-tab" data-toggle="pill" href="#pills-orderNotes"
+      role="tab" aria-controls="pills-orderNotes" aria-selected="false">Order Notes</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-storeRequest-tab" data-toggle="pill" href="#pills-storeRequest"
+      role="tab" aria-controls="pills-storeRequest" aria-selected="false">Store Request</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-jobCards-tab" data-toggle="pill" href="#pills-jobCards" role="tab"
+      aria-controls="pills-jobCards" aria-selected="false">Job Cards</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="pills-testReports-tab" data-toggle="pill" href="#pills-testReports"
+      role="tab" aria-controls="pills-testReports" aria-selected="false">Test Report</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-Estimates" role="tabpanel" aria-labelledby="pills-Estimates-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 80%;">Estimate No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @estimates.each do |estimate| %>
+          <tr>
+            <td><%= estimate.code %></td>
+            <td>
+              <a href="<%= approve_estimate_path(estimate) %>" data-method="post">Approve</a>
+              <a href="<%= reject_estimate_path(estimate) %>" data-method="post" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="pills-Invoice" role="tabpanel" aria-labelledby="pills-Invoice-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 80%;">Invoice No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EST/05/22021</td>
+            <td>
+              <a href="">Approve</a>
+              <a href="" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="pills-orderNotes" role="tabpanel" aria-labelledby="pills-orderNotes-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 40%;">Invoice No.</th>
+            <th style="width: 40%;">Order No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>
+              <a href="">Approve</a>
+              <a href="" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="pills-storeRequest" role="tabpanel" aria-labelledby="pills-storeRequest-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Invoice No.</th>
+            <th style="width: 28%;">Order No.</th>
+            <th style="width: 28%;">Store Request No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>
+              <a href="">Approve</a>
+              <a href="" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="pills-jobCards" role="tabpanel" aria-labelledby="pills-jobCards-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Invoice No.</th>
+            <th style="width: 28%;">Order No.</th>
+            <th style="width: 28%;">Job Card No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>
+              <a href="">Approve</a>
+              <a href="" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="pills-testReports" role="tabpanel" aria-labelledby="pills-testReports-tab">
+      <table class="table cstmTable">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Invoice No.</th>
+            <th style="width: 28%;">Order No.</th>
+            <th style="width: 28%;">Report No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>EST/05/22021</td>
+            <td>
+              <a href="">Approve</a>
+              <a href="" class="text-danger ml-4">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

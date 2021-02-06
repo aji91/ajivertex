@@ -40,6 +40,7 @@ function updateHsn(evt) {
     url: url
   }).done(function(data){
     $(evt).parent().parent().next().children().children().val(data.hsn);
+    $(evt).parent().parent().next().next().next().children().children().val(data.price);
   }).fail(function(){
     toastr.error('', 'Product not found.');
   });

@@ -7,7 +7,7 @@ class HomesController < ApplicationController
 
   def get_product
   	model = ProductModel.find_by_id(params[:pid])
-  	render json: { hsn: model ? model.hsn : nil }
+  	render json: { hsn: model ? model.hsn : nil, price: model ? model.price : nil }
   end
 
   def find_tax

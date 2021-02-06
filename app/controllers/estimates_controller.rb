@@ -1,6 +1,6 @@
 class EstimatesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_estimate, only: [:edit, :update, :show, :order_notes]
+  before_action :set_estimate, except: [:index, :new, :create]
 
   def index
   	@estimates = Estimate.all
@@ -11,7 +11,7 @@ class EstimatesController < ApplicationController
   end
 
   def create
-    @estimate = Estimate.new(estimate_params)
+    @estimate = Estimate.new(estimate_params.merge({created_by: @user.id}))
     if @estimate.save
       flash[:notice] = 'Estimate successfully created.'
       redirect_to estimates_path
@@ -28,7 +28,9 @@ class EstimatesController < ApplicationController
   end
 
   def update
-    if !@estimate.approved?
+    if @estimate.addressed?
+      flash[:error] = "Estimate already approved or rejected. You can not edit now."
+    else
       if @estimate.update_attributes(estimate_params)
         flash[:notice] = 'Estimate successfully updated.'
         redirect_to estimates_path
@@ -36,8 +38,6 @@ class EstimatesController < ApplicationController
         flash[:error] = @estimate.errors.full_messages[0]
         render :edit
       end
-    else
-      flash[:error] = "Estimate already approved. You can not edit now."
     end
   end
 
@@ -45,6 +45,16 @@ class EstimatesController < ApplicationController
   end
 
   def order_notes
+    redirect_to estimate_path(@estimate)
+  end
+
+  def approve
+    if @estimate.addressed?
+    else
+    end
+  end
+
+  def reject
   end
 
   private

@@ -12,8 +12,10 @@ class CreateEstimates < ActiveRecord::Migration[5.2]
       t.string :total
       t.boolean :approved, default: false
       t.integer :approved_by
+      t.datetime :approved_at
       t.boolean :rejected, default: false
       t.integer :rejected_by
+      t.datetime :rejected_at
       t.timestamps
     end
   end

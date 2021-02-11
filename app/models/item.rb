@@ -1,3 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :category
+	include PublicActivity::Model
+	tracked owner: Proc.new{ |controller, model| controller.current_user if controller }
+	belongs_to :category
 end

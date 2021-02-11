@@ -1,7 +1,7 @@
 <div class="dbmnContainer">
   <a class="btn bckBtn" href="<%= proformas_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
   <div class="pgHdWrpr d-flex align-items-start justify-content-between">
-    <h2 class="pgHdr">Sales Order</h2>
+    <h2 class="pgHdr">Proforma</h2>
     <div class="d-flex align-items-center">
       <a class="btn outlButton smlBtn ml-3" href="javascript:void(0);">
         <img src="/assets/pdf.svg" alt="">
@@ -13,7 +13,7 @@
     <div class="topContainer prvwWrpr d-flex align-items-start justify-content-end">
       <div class="ritContainer">
         <div class="dtlCntnr">
-          <label for="">proforma No. :</label>
+          <label for="">Proforma No. :</label>
           <p><%= @proforma.code %></p>
         </div>
         <div class="dtlCntnr">
@@ -62,7 +62,7 @@
           <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.sub_total) %>">
         </div>
         <div class="inptWrpr lblLft">
-          <label for="">CGST</label>
+          <label for="">CGST/IGST</label>
           <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.cgst) %>">
         </div>
         <div class="inptWrpr lblLft">

@@ -9,12 +9,12 @@
       role="tab" aria-controls="pills-Estimates" aria-selected="true">Estimates</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="pills-Invoice-tab" data-toggle="pill" href="#pills-Invoice"
-      role="tab" aria-controls="pills-Invoice" aria-selected="false">Invoice</a>
+      <a class="nav-link" id="pills-Proformas-tab" data-toggle="pill" href="#pills-Proformas"
+      role="tab" aria-controls="pills-Proformas" aria-selected="false">Proformas</a>
     </li>
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="pills-orderNotes-tab" data-toggle="pill" href="#pills-orderNotes"
-      role="tab" aria-controls="pills-orderNotes" aria-selected="false">Order Notes</a>
+      role="tab" aria-controls="pills-orderNotes" aria-selected="false">Orders</a>
     </li>
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="pills-storeRequest-tab" data-toggle="pill" href="#pills-storeRequest"
@@ -52,22 +52,24 @@
         </tbody>
       </table>
     </div>
-    <div class="tab-pane fade" id="pills-Invoice" role="tabpanel" aria-labelledby="pills-Invoice-tab">
+    <div class="tab-pane fade" id="pills-Proformas" role="tabpanel" aria-labelledby="pills-Proformas-tab">
       <table class="table cstmTable">
         <thead>
           <tr>
-            <th style="width: 80%;">Invoice No.</th>
+            <th style="width: 80%;">Proforma No.</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+          <% @proformas.each do |proforma| %>
           <tr>
-            <td>EST/05/22021</td>
+            <td><%= proforma.code %></td>
             <td>
-              <a href="">Approve</a>
-              <a href="" class="text-danger ml-4">Reject</a>
+              <a href="<%= approve_proforma_path(proforma) %>" data-method="post">Approve</a>
+              <a href="<%= reject_proforma_path(proforma) %>" data-method="post" class="text-danger ml-4">Reject</a>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -75,20 +77,22 @@
       <table class="table cstmTable">
         <thead>
           <tr>
-            <th style="width: 40%;">Invoice No.</th>
             <th style="width: 40%;">Order No.</th>
+            <th style="width: 40%;">Acceptance No.</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+          <% @sale_orders.each do |sale_order| %>
           <tr>
-            <td>EST/05/22021</td>
-            <td>EST/05/22021</td>
+            <td><%= sale_order.code %></td>
+            <td><%= sale_order.acceptance_no %></td>
             <td>
-              <a href="">Approve</a>
-              <a href="" class="text-danger ml-4">Reject</a>
+              <a href="<%= approve_proforma_sale_order_path(sale_order.proforma, sale_order) %>" data-method="post">Approve</a>
+              <a href="<%= reject_proforma_sale_order_path(sale_order.proforma, sale_order) %>" data-method="post" class="text-danger ml-4">Reject</a>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

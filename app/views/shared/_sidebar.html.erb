@@ -17,7 +17,7 @@
   <div class="collapse multi-collapse clpsMenu <%= sales_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample1">
     <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'estimates' ? 'active' : '' %>" href="<%= estimates_path %>" >Estimates</a>
     <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'proformas' ? 'active' : '' %>" href="<%= proformas_path %>">Proforma</a>
-    <a class="btn inrLftBtn lftNvBtn">Orders</a>
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'sale_orders' ? 'active' : '' %>" href="<%= sale_orders_path %>">Orders</a>
     <a class="btn inrLftBtn lftNvBtn">Invoice</a>
   </div>
   <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
@@ -40,8 +40,8 @@
     <span class="material-icons">expand_more</span>
   </button>
   <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample3">
-    <a class="btn inrLftBtn lftNvBtn active" type="button">Job Card</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Store Request</a>
+    <a class="btn inrLftBtn lftNvBtn active" type="button">Job Card</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Quality Check Reports</a>
   </div>
   <button class="btn lftNvBtn acrdBtn <%= controller_name == 'reports' ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
@@ -54,7 +54,7 @@
   <div class="collapse multi-collapse clpsMenu <%= controller_name == 'reports' ? 'show' : '' %>" id="multiCollapseExample4">
     <a class="btn inrLftBtn lftNvBtn <%= action_name == 'approvals' ? 'show' : '' %>" href="<%= approvals_reports_path %>">Approval</a>
     <a class="btn inrLftBtn lftNvBtn">Logs</a>
-    <a class="btn inrLftBtn lftNvBtn">Work Flow</a>
+    <a class="btn inrLftBtn lftNvBtn <%= ['work_flows', 'view_flow'].include?(action_name) ? 'show' : '' %>" href="<%= work_flows_reports_path %>">Work Flow</a>
     <a class="btn inrLftBtn lftNvBtn">Email Logs</a>
   </div>
   <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">

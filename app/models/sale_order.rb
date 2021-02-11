@@ -1,14 +1,15 @@
-class Estimate < ApplicationRecord
+class SaleOrder < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user if controller }
   belongs_to :client
-  has_many :proformas, dependent: :destroy
+  belongs_to :vendor
+  belongs_to :proforma
   has_many :selected_models, as: :modelable, dependent: :destroy
   validates :selected_models, :length => { :minimum => 1 }
   accepts_nested_attributes_for :selected_models, reject_if: :all_blank, allow_destroy: true
-  
-  scope :non_approvals, -> { where(approved: false, rejected: false) }
 
+  scope :non_approvals, -> { where(approved: false, rejected: false) }
+  
   def payment_status
     '--'
   end
@@ -23,12 +24,12 @@ class Estimate < ApplicationRecord
   end
 
   def new_code
-    ee = Estimate.where("created_at >= ?", Time.now.beginning_of_year).last
-    if ee
+    ee = SaleOrder.where("created_at >= ?", Time.now.beginning_of_year).last
+    if ee && ee.code
       ss = ee.code.split('/')[2]
-      "EST/#{Time.now.year}/#{ss.to_i + 1}"
+      "ORDER/#{Time.now.year}/#{ss.to_i + 1}"
     else
-      "EST/#{Time.now.year}/1"
+      "ORDER/#{Time.now.year}/1"
     end
   end
 

@@ -1,9 +1,16 @@
 class ProformasController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_proforma, only: [:edit, :update]
+  before_action :set_proforma, except: [:new, :index, :create, :download_report]
 
   def index
   	@proformas = Proforma.all
+    @q = params[:search]
+    search_proformas if @q.present?
+    @proformas = @proformas.page(params[:page]).per(20)
+  end
+
+  def search_proformas
+    @proformas = @proformas.where("code LIKE ?", "%#{@q[:name]}%")
   end
 
   def new
@@ -22,6 +29,10 @@ class ProformasController < ApplicationController
   end
 
   def edit
+    if @proforma.addressed?
+      flash[:error] = "Proforma already approved or rejected. You can not edit now."
+      redirect_to proformas_path
+    end
   end
 
   def update
@@ -42,6 +53,36 @@ class ProformasController < ApplicationController
   end
 
   def order_notes
+    redirect_to proforma_path(@proforma)
+  end
+
+  def approve
+    if @proforma.addressed?
+      flash[:error] = "Proforma already approved or rejected. You can not edit now."
+    else
+      @proforma.update_attributes(approved: true, approved_by: @user.id, approved_at: Time.zone.now)
+      flash[:notice] = "Proforma approved."
+    end
+    redirect_back(fallback_location: '/proformas')
+  end
+
+  def reject
+    if @proforma.addressed?
+      flash[:error] = "Proforma already approved or rejected. You can not edit now."
+    else
+      @proforma.update_attributes(rejected: true, rejected_by: @user.id, rejected_at: Time.zone.now)
+      flash[:notice] = "Proforma rejected."
+    end
+    redirect_back(fallback_location: '/proformas')
+  end
+
+  def download_report
+    @proformas = Proforma.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment;filename=Proformas-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
+      }
+    end
   end
 
   private

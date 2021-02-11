@@ -1,9 +1,16 @@
-class CreateProformas < ActiveRecord::Migration[5.2]
+class CreateSaleOrders < ActiveRecord::Migration[5.2]
   def change
-    create_table :proformas do |t|
+    create_table :sale_orders do |t|
       t.integer :created_by
       t.integer :client_id
-      t.integer :estimate_id
+      t.integer :proforma_id
+      t.integer :vendor_id
+      t.text :acceptance_no
+      t.text :delivery_address_lin1
+      t.text :delivery_address_lin2
+      t.string :delivery_city
+      t.string :delivery_pin_code
+      t.datetime :delivery_date
       t.string :code
       t.text :terms
       t.text :notes

@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+sheet1 = wb.add_worksheet(name: "Proformas") do |sheet|
+
+  style1 = sheet.styles.add_style(:b => true, :border => { :style => :thin, :color => "001739" })
+
+  sheet.add_row ['ID', 'Code', 'Created by', 'Client', 'Terms', 'Notes', 'Sub total', 'CGST/IGST', 'SGST', 'Total', 'Status'], :style => style1, :height => 13
+
+  @proformas.each do |proforma|
+    data = [
+      proforma.id, proforma.code, proforma.created_by, proforma.client_id,
+      proforma.terms, proforma.notes, proforma.sub_total, proforma.cgst, proforma.sgst,
+      proforma.total, proforma.status
+    ]
+
+    sheet.add_row data
+  end
+end

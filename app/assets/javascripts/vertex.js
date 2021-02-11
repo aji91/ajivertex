@@ -3,7 +3,6 @@ function sideBarToggle(){
 }
 
 $(document).on('click', '.form-submit', function(){
-	console.log('test');
   return $(this).closest('form').parsley().validate();
 });
 
@@ -85,7 +84,7 @@ function calculate_row(){
       total = quan*rate;
       $(this).find('.amount_class').val(total);
       subtotal = (subtotal + total);
-      $('#estimate_sub_total').val(subtotal);
+      $('#common_sub_total').val(subtotal);
       cg_val = total * parseFloat(cgst_split[1]) / 100;
       cgst = cgst + cg_val;
       if (cgst_split[0] != 'IGST'){
@@ -94,9 +93,9 @@ function calculate_row(){
 
     }
   });
-  $('#estimate_cgst').val(cgst);
-  $('#estimate_sgst').val(sgst);
-  $('#estimate_total').val(subtotal + cgst + sgst);
+  $('#common_cgst').val(cgst);
+  $('#common_sgst').val(sgst);
+  $('#common_total').val(subtotal + cgst + sgst);
 }
 
 $(document).on('click', '.remove-model', function(){

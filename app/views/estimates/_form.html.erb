@@ -37,7 +37,7 @@
       </thead>
     </table>
     <%= f.fields_for :selected_models do |model| %>
-    <%= render 'selected_model_fields', :f => model %>
+    <%= render '/shared/selected_model_fields', :f => model %>
     <% end %>
     <div class="text-right">
       <%= link_to_add_association '<button class="btn outlButton admrBtn ml-auto"><span class="material-icons mr-2">add_circle_outline</span>Add More</button>'.html_safe, f, :selected_models %>
@@ -61,19 +61,19 @@
       <div class="col-4">
         <div class="inptWrpr lblLft">
           <label for="">Sub Total</label>
-          <%= f.text_field :sub_total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Sub Total", readonly: true %>
+          <%= f.text_field :sub_total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Sub Total", readonly: true, id: "common_sub_total" %>
         </div>
         <div class="inptWrpr lblLft">
-          <label for="">CGST</label>
-          <%= f.text_field :cgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter CGST", readonly: true %>
+          <label for="">CGST/IGST</label>
+          <%= f.text_field :cgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter CGST/IGST", readonly: true, id: "common_cgst" %>
         </div>
         <div class="inptWrpr lblLft">
           <label for="">SGST</label>
-          <%= f.text_field :sgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter SGST", readonly: true %>
+          <%= f.text_field :sgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter SGST", readonly: true, id: "common_sgst" %>
         </div>
         <div class="inptWrpr lblLft">
           <label for="">Total</label>
-          <%= f.text_field :total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter total", readonly: true %>
+          <%= f.text_field :total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter total", readonly: true, id: "common_total" %>
         </div>
       </div>
     </div>

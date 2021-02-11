@@ -1,0 +1,126 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= sale_orders_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr">Order</h2>
+  </div>
+  <div class="formWrapper">
+    <%= form_for(@sale_order, url: @sale_order.new_record? ? proforma_sale_orders_path(@proforma) : proforma_sale_order_path(@proforma, @sale_order), html: { "data-parsley-validate" => true, id: 'sale_order-form' }) do |f| %>
+    <div class="frmHdr">Order Details</div>
+    <div class="row">
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Choose Vendor</label>
+          <%= f.select :vendor_id, options_for_select(Vendor.all.map { |p| [p.name, p.id] }, @sale_order.vendor_id),{ include_blank: 'Choose Vendor' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select vendor." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Order code</label>
+          <%= f.text_field :code, value: @sale_order.code || @sale_order.new_code, placeholder: "Estimate No", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Estimate No.", readonly: true %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Order acceptance number</label>
+          <%= f.text_field :acceptance_no, placeholder: "Order acceptance number", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter acceptance number." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Delivery Address Line 1</label>
+          <%= f.text_field :delivery_address_lin1, placeholder: "Address Line 1", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter address line one." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Delivery Address Line 2</label>
+          <%= f.text_field :delivery_address_lin2, placeholder: "Address Line 2", "data-parsley-required" => "false", "data-parsley-required-message" => "Please enter address line two." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Delivery City</label>
+          <%= f.text_field :delivery_city, placeholder: "City", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter city." %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Delivery Zipcode</label>
+          <%= f.text_field :delivery_pin_code, placeholder: "Zipcode", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Zipcode.", class: "number-only" %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label class="cstmLbl">Delivery Date</label>
+          <%= f.text_field :delivery_date, value: @sale_order.delivery_date.present? ? @sale_order.delivery_date.strftime("%d/%m/%Y") : '', class: 'delivery_date', readonly: true,  'data-parsley-required' => "true", "data-parsley-required-message" => "Please select delivery date." %>
+        </div>
+      </div>
+    </div>
+    <table class="table cstmTable">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Product</th>
+          <th style="width: 10%;">HSN #</th>
+          <th style="width: 10%;">Quantity</th>
+          <th style="width: 10%;">Rate</th>
+          <th style="width: 15%;">CGST/IGST</th>
+          <th style="width: 15%;">SGST</th>
+          <th style="width: 10%;">Amount</th>
+          <th style="width: 10%;">Action</th>
+        </tr>
+      </thead>
+    </table>
+    <%= f.fields_for :selected_models do |model| %>
+    <%= render '/shared/selected_model_fields', :f => model %>
+    <% end %>
+    <div class="text-right">
+      <%= link_to_add_association '<button class="btn outlButton admrBtn ml-auto"><span class="material-icons mr-2">add_circle_outline</span>Add More</button>'.html_safe, f, :selected_models %>
+    </div>
+    <div class="brdrTp mt-4"></div>
+    <div class="row mt-4 align-items-end">
+      <div class="col-8 pr-5">
+        <div class="inptWrpr">
+          <label for="">Terms</label>
+          <%= f.cktext_area :terms, value: @sale_order.terms || @proforma.terms, class: 'ckeditor', ckeditor: {toolbar: []} %>
+        </div>
+        <div class="inptWrpr">
+          <label for="">Notes</label>
+          <%= f.cktext_area :notes, value: @sale_order.notes || @proforma.notes, class: 'ckeditor', ckeditor: {toolbar: []} %>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="inptWrpr lblLft">
+          <label for="">Sub Total</label>
+          <%= f.text_field :sub_total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Sub Total", readonly: true, id: "common_sub_total" %>
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">CGST/IGST</label>
+          <%= f.text_field :cgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter CGST/IGST", readonly: true, id: "common_cgst" %>
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">SGST</label>
+          <%= f.text_field :sgst, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter SGST", readonly: true, id: "common_sgst" %>
+        </div>
+        <div class="inptWrpr lblLft">
+          <label for="">Total</label>
+          <%= f.text_field :total, placeholder: "", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter total", readonly: true, id: "common_total" %>
+        </div>
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <button class="btn primButton form-submit">Submit</button>
+      <a class="btn outlButton" href="<%= sale_orders_path %>" style="width: 150px;">Cancel</a>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.delivery_date').datetimepicker({
+    format:'d/m/Y',
+    timepicker: false,
+    scrollInput : false
+  });
+  
+  calculate_row();
+</script>

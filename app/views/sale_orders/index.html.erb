@@ -1,0 +1,55 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Orders</h2>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
+    </div>
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_sale_orders_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Acceptance no.</th>
+        <th>Vendor</th>
+        <th>Delivery Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sale_orders.each do |sale_order| %>
+      <tr>
+        <td><%= sale_order.id %></td>
+        <td><%= sale_order.code %></td>
+        <td><%= sale_order.acceptance_no %></td>
+        <td><%= sale_order.vendor&.name %></td>
+        <td><%= sale_order.delivery_date.strftime("%d/%m/%Y") %></td>
+        <td>
+          <% if sale_order.addressed? %>
+          <%= sale_order.status %>
+          <% else %>
+          <a href="<%= approve_proforma_sale_order_path(sale_order.proforma, sale_order) %>" data-method="post">Approve</a>
+          <a href="<%= reject_proforma_sale_order_path(sale_order.proforma, sale_order) %>" data-method="post" class="text-danger ml-4">Reject</a>
+          <% end %>
+        </td>
+        <td>
+          <a href="<%= proforma_sale_order_path(sale_order.proforma, sale_order) %>">View</a>
+          <% unless sale_order.addressed? %>
+          <a href="<%= edit_proforma_sale_order_path(sale_order.proforma, sale_order) %>">Edit</a>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

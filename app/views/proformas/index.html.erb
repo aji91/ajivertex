@@ -4,14 +4,16 @@
     <a class="btn primButton" href="<%= new_proforma_path %>">New Proforma</a>
   </div>
   <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
     <div class="srchWrpr d-flex align-items-center">
       <span class="material-icons">search</span>
-      <input type="search">
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
     </div>
-    <button class="btn outlButton smlBtn">
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_proformas_path(format: 'xlsx') %>">
       <img src="/assets/export_icon.svg" alt="">
       Export
-    </button>
+    </a>
   </div>
   <table class="table cstmTable">
     <thead>
@@ -34,13 +36,26 @@
         <td><%= proforma.client&.name %></td>
         <td><%= proforma.total %></td>
         <td><%= proforma.created_at.strftime("%d-%m-%Y") %></td>
-        <td><%= proforma.approved? ? 'Approved' : '--' %></td>
         <td>
-          <a href="<%= proforma_path(proforma) %>">View</a>
-          <a href="<%= edit_proforma_path(proforma) %>">Edit</a>
+          <% if proforma.addressed? %>
+          <%= proforma.status %>
+          <% else %>
+          <a href="<%= approve_proforma_path(proforma) %>" data-method="post">Approve</a>
+          <a href="<%= reject_proforma_path(proforma) %>" data-method="post" class="text-danger ml-4">Reject</a>
+          <% end %>
         </td>
         <td>
-          <a href="<%= order_notes_proforma_path(proforma) %>">Order Note</a>
+          <a href="<%= proforma_path(proforma) %>">View</a>
+          <% unless proforma.addressed? %>
+          <a href="<%= edit_proforma_path(proforma) %>">Edit</a>
+          <% end %>
+        </td>
+        <td>
+          <% if proforma.approved? %>
+          <a href="<%= new_proforma_sale_order_path(proforma) %>">Order Note</a>
+          <% else %>
+          --
+          <% end %>
         </td>
       </tr>
       <% end %>

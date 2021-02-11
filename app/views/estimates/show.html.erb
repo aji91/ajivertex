@@ -1,7 +1,7 @@
 <div class="dbmnContainer">
   <a class="btn bckBtn" href="<%= estimates_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
   <div class="pgHdWrpr d-flex align-items-start justify-content-between">
-    <h2 class="pgHdr">Sales Order</h2>
+    <h2 class="pgHdr">Estimate</h2>
     <div class="d-flex align-items-center">
       <a class="btn outlButton smlBtn ml-3" href="javascript:void(0);">
         <img src="/assets/pdf.svg" alt="">
@@ -62,7 +62,7 @@
           <input type="text" disabled value="<%= number_to_indian_rupee(@estimate.sub_total) %>">
         </div>
         <div class="inptWrpr lblLft">
-          <label for="">CGST</label>
+          <label for="">CGST/IGST</label>
           <input type="text" disabled value="<%= number_to_indian_rupee(@estimate.cgst) %>">
         </div>
         <div class="inptWrpr lblLft">

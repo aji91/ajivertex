@@ -1,0 +1,52 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Service Request</h2>
+    <a class="btn primButton" href="<%= new_service_request_path %>">New Service Request</a>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
+    </div>
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_service_requests_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Number</th>
+        <th>Date</th>
+        <th>City</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Assinged To</th>
+        <th>Assigned On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_requests.each do |service_request| %>
+      <tr>
+        <td>Martin</td>
+        <td>1234</td>
+        <td>27-02-2020</td>
+        <td>Chennai</td>
+        <td>In progress</td>
+        <td>Type_one</td>
+        <td>1028.00</td>
+        <td>Jhonson</td>
+        <td>Assigned On</td>
+        <td>
+          <a href="">View</a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

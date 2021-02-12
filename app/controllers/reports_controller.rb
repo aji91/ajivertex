@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
   	@estimates = Estimate.non_approvals
   	@proformas = Proforma.non_approvals
   	@sale_orders = SaleOrder.non_approvals
+    @store_requests = StoreRequest.non_approvals
   end
 
   def work_flows

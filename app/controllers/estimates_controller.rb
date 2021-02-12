@@ -65,7 +65,7 @@ class EstimatesController < ApplicationController
     else
       @estimate.update_attributes(approved: true, approved_by: @user.id, approved_at: Time.zone.now)
 
-      proforma = @estimate.proformas.new(
+      proforma = @estimate.build_proforma(
         client_id: @estimate.client_id,
         code: Proforma.new.new_code,
         terms: @estimate.terms,

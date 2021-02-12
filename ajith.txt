@@ -5,7 +5,7 @@ proforma - has many orders
 order - as many store request
 store_request - has many job card
 job_card has many test reports
-order has many invoices
+order has one invoices
 
 rate prepopulate - done
 rate update in setti - done

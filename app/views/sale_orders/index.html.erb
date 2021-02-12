@@ -44,6 +44,9 @@
         </td>
         <td>
           <a href="<%= proforma_sale_order_path(sale_order.proforma, sale_order) %>">View</a>
+          <% if sale_order.approved? %>
+          <a href="<%= do_store_request_proforma_sale_order_path(sale_order.proforma, sale_order) %>" data-method="post">Create Strore Request</a>
+          <% end %>
           <% unless sale_order.addressed? %>
           <a href="<%= edit_proforma_sale_order_path(sale_order.proforma, sale_order) %>">Edit</a>
           <% end %>

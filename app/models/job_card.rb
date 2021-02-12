@@ -1,0 +1,2 @@
+class JobCard < ApplicationRecord
+end

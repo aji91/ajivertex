@@ -15,10 +15,10 @@ class SaleOrdersController < ApplicationController
   end
 
   def new
-    if @proforma.sale_orders.exists?
-      redirect_to proforma_sale_order_path(@proforma.sale_orders.first)
+    if @proforma.sale_order.present?
+      redirect_to proforma_sale_order_path(@proforma, @proforma.sale_order)
     else
-      @sale_order = @proforma.sale_orders.new
+      @sale_order = @proforma.build_sale_order
       @proforma.selected_models.each do |sm|
         @sale_order.selected_models.build(sm.attributes.to_h.except("id", "modelable_type", "modelable_id", "created_at", "updated_at"))
       end
@@ -26,7 +26,7 @@ class SaleOrdersController < ApplicationController
   end
 
   def create
-    @sale_order = @proforma.sale_orders.new(sale_order_params.merge({created_by: @user.id, client_id: @proforma.client_id}))
+    @sale_order = @proforma.build_sale_order(sale_order_params.merge({created_by: @user.id, client_id: @proforma.client_id}))
 
     if @sale_order.save
       flash[:notice] = 'Order successfully created.'
@@ -80,6 +80,23 @@ class SaleOrdersController < ApplicationController
       format.xlsx {
         response.headers['Content-Disposition'] = "attachment;filename=Proformas-#{Date.today.strftime('%m/%d/%Y')}.xlsx"
       }
+    end
+  end
+
+  def do_store_request
+    if @sale_order.store_request.present?
+      flash[:error] = "Store request has been already created for this order."
+    else
+      @sale_order.create_store_request(
+        requested_by: @user.id,
+        client_id: @sale_order.client_id,
+        vendor_id: @sale_order.vendor_id,
+        delivery_date: @sale_order.delivery_date,
+        code: StoreRequest.new.new_code
+      )
+
+      flash[:notice] = "Store request created."
+      redirect_to store_requests_path
     end
   end
 

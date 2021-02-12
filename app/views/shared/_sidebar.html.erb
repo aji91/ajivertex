@@ -32,17 +32,17 @@
     <a class="btn inrLftBtn lftNvBtn" type="button">Inventory</a>
     <a class="btn inrLftBtn lftNvBtn" type="button">Store Returns</a>
   </div>
-  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">
+  <button class="btn lftNvBtn acrdBtn <%= production_opend(controller_name) ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">
     <p class="m-0">
       <img class="navIcons" src="/assets/production.svg" alt="">
       Production
     </p>
     <span class="material-icons">expand_more</span>
   </button>
-  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample3">
-    <a class="btn inrLftBtn lftNvBtn" type="button">Store Request</a>
-    <a class="btn inrLftBtn lftNvBtn active" type="button">Job Card</a>
-    <a class="btn inrLftBtn lftNvBtn" type="button">Quality Check Reports</a>
+  <div class="collapse multi-collapse clpsMenu <%= production_opend(controller_name) ? 'show' : '' %>" id="multiCollapseExample3">
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'store_requests' ? 'active' : '' %>" href="<%= store_requests_path %>">Store Request</a>
+    <a class="btn inrLftBtn lftNvBtn">Job Card</a>
+    <a class="btn inrLftBtn lftNvBtn">Quality Check Reports</a>
   </div>
   <button class="btn lftNvBtn acrdBtn <%= controller_name == 'reports' ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">
     <p class="m-0">
@@ -57,20 +57,26 @@
     <a class="btn inrLftBtn lftNvBtn <%= ['work_flows', 'view_flow'].include?(action_name) ? 'show' : '' %>" href="<%= work_flows_reports_path %>">Work Flow</a>
     <a class="btn inrLftBtn lftNvBtn">Email Logs</a>
   </div>
-  <button class="btn lftNvBtn acrdBtn collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">
+  <button class="btn lftNvBtn acrdBtn <%= controller_name == 'service_requests' ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">
     <p class="m-0">
       <img class="navIcons" src="/assets/service.svg" alt="">
       Services
     </p>
     <span class="material-icons">expand_more</span>
   </button>
-  <div class="collapse multi-collapse clpsMenu" id="multiCollapseExample5">
-    <a class="btn inrLftBtn lftNvBtn active" type="button">Service Request</a>
+  <div class="collapse multi-collapse clpsMenu <%= controller_name == 'service_requests' ? 'show' : '' %>" id="multiCollapseExample5">
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'service_requests' ? 'active' : '' %>" href="<%= service_requests_path %>">Service Request</a>
   </div>
-  <button class="btn lftNvBtn" type="button">
-    <img class="navIcons" src="/assets/amc.svg" alt="">
-    AMC
+  <button class="btn lftNvBtn acrdBtn <%= controller_name == 'amc_requests' ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="false" aria-controls="multiCollapseExample11">
+    <p class="m-0">
+      <img class="navIcons" src="/assets/amc.svg" alt="">
+      AMC
+    </p>
+    <span class="material-icons">expand_more</span>
   </button>
+  <div class="collapse multi-collapse clpsMenu <%= controller_name == 'amc_requests' ? 'show' : '' %>" id="multiCollapseExample11">
+    <a class="btn inrLftBtn lftNvBtn <%= controller_name == 'amc_requests' ? 'active' : '' %>" href="<%= amc_requests_path %>">AMC</a>
+  </div>
   <button class="btn lftNvBtn acrdBtn <%= settings_opend(controller_name) ? '' : 'collapsed' %>" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">
     <p class="m-0">
       <img class="navIcons" src="/assets/settings.svg" alt="">

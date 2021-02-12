@@ -1,12 +1,11 @@
-class Proforma < ApplicationRecord
+class StoreRequest < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user if controller }
   belongs_to :client
-  belongs_to :estimate, optional: true
-  has_one :sale_order, dependent: :destroy
-  has_many :selected_models, as: :modelable, dependent: :destroy
-  validates :selected_models, :length => { :minimum => 1 }
-  accepts_nested_attributes_for :selected_models, reject_if: :all_blank, allow_destroy: true
+  belongs_to :vendor
+  belongs_to :sale_order
+  has_one :job_card
+  has_one :invoice, through: :sale_order
 
   scope :non_approvals, -> { where(approved: false, rejected: false) }
   
@@ -24,12 +23,12 @@ class Proforma < ApplicationRecord
   end
 
   def new_code
-    ee = Proforma.where("created_at >= ?", Time.now.beginning_of_year).last
-    if ee
+    ee = StoreRequest.where("created_at >= ?", Time.now.beginning_of_year).last
+    if ee && ee.code
       ss = ee.code.split('/')[2]
-      "PFA/#{Time.now.year}/#{ss.to_i + 1}"
+      "SR/#{Time.now.year}/#{ss.to_i + 1}"
     else
-      "PFA/#{Time.now.year}/1"
+      "SR/#{Time.now.year}/1"
     end
   end
 

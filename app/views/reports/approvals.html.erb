@@ -100,22 +100,22 @@
       <table class="table cstmTable">
         <thead>
           <tr>
-            <th style="width: 28%;">Invoice No.</th>
             <th style="width: 28%;">Order No.</th>
             <th style="width: 28%;">Store Request No.</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+          <% @store_requests.each do |store_request| %>
           <tr>
-            <td>EST/05/22021</td>
-            <td>EST/05/22021</td>
-            <td>EST/05/22021</td>
+            <td><%= store_request.sale_order.code %></td>
+            <td><%= store_request.code %></td>
             <td>
-              <a href="">Approve</a>
-              <a href="" class="text-danger ml-4">Reject</a>
+              <a href="<%= approve_store_request_path(store_request) %>" data-method="post">Approve</a>
+              <a href="<%= reject_store_request_path(store_request) %>" data-method="post" class="text-danger ml-4">Reject</a>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

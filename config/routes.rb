@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   		get :get_states
       get :get_product
       get :find_tax
-  	end
+    end
   end
   
   resources :categories, except: [:destroy] do
@@ -81,11 +81,23 @@ Rails.application.routes.draw do
       member do
         post :approve
         post :reject
+        post :do_store_request
       end
     end
   end
 
   resources :sale_orders, only: [:index] do
+    collection do
+      get :download_report
+    end
+  end
+
+  resources :store_requests, except: [:new, :create] do
+    member do
+      post :approve
+      post :reject
+    end
+    
     collection do
       get :download_report
     end
@@ -98,6 +110,18 @@ Rails.application.routes.draw do
       get :approvals
       get :work_flows
       get :view_flow
+    end
+  end
+
+  resources :service_requests, except: [:destroy] do
+    collection do
+      get :download_report
+    end
+  end
+
+  resources :amc_requests, except: [:destroy] do
+    collection do
+      get :download_report
     end
   end
 end

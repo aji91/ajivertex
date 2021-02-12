@@ -2,7 +2,7 @@ class Estimate < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user if controller }
   belongs_to :client
-  has_many :proformas, dependent: :destroy
+  has_one :proforma, dependent: :destroy
   has_many :selected_models, as: :modelable, dependent: :destroy
   validates :selected_models, :length => { :minimum => 1 }
   accepts_nested_attributes_for :selected_models, reject_if: :all_blank, allow_destroy: true

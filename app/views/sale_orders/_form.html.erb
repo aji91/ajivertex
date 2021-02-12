@@ -71,7 +71,7 @@
       </thead>
     </table>
     <%= f.fields_for :selected_models do |model| %>
-    <%= render '/shared/selected_model_fields', :f => model %>
+    <%= render 'selected_model_fields', :f => model %>
     <% end %>
     <div class="text-right">
       <%= link_to_add_association '<button class="btn outlButton admrBtn ml-auto"><span class="material-icons mr-2">add_circle_outline</span>Add More</button>'.html_safe, f, :selected_models %>

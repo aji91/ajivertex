@@ -4,6 +4,8 @@ class SaleOrder < ApplicationRecord
   belongs_to :client
   belongs_to :vendor
   belongs_to :proforma
+  has_one :store_request
+  has_one :invoice
   has_many :selected_models, as: :modelable, dependent: :destroy
   validates :selected_models, :length => { :minimum => 1 }
   accepts_nested_attributes_for :selected_models, reject_if: :all_blank, allow_destroy: true

@@ -4,57 +4,51 @@
     <h2 class="pgHdr">Order</h2>
   </div>
   <div class="formWrapper">
-    <%= form_for(@sale_order, url: @sale_order.new_record? ? proforma_sale_orders_path(@proforma) : proforma_sale_order_path(@proforma, @sale_order), html: { "data-parsley-validate" => true, id: 'sale_order-form' }) do |f| %>
-      <div class="frmHdr">Order Details</div>
-      <div class="row">
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Country</label>
-            <%= f.select :vendor_id, options_for_select(Vendor.all.map { |p| [p.name, p.id] }, @sale_order.vendor_id),{ include_blank: 'Choose Vendor' }, class: 'form-control', 'data-parsley-required' => "true", 'data-parsley-required-message' => "Please select vendor." %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Order acceptance number</label>
-            <%= f.text_field :acceptance_no, placeholder: "Order acceptance number", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter acceptance number." %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Delivery Address Line 1</label>
-            <%= f.text_field :delivery_address_lin1, placeholder: "Address Line 1", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter address line one." %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Delivery Address Line 2</label>
-            <%= f.text_field :delivery_address_lin2, placeholder: "Address Line 2", "data-parsley-required" => "false", "data-parsley-required-message" => "Please enter address line two." %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Delivery City</label>
-            <%= f.text_field :delivery_city, placeholder: "City", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter city." %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Delivery Zipcode</label>
-            <%= f.text_field :delivery_pin_code, placeholder: "Zipcode", "data-parsley-required" => "true", "data-parsley-required-message" => "Please enter Zipcode.", class: "number-only" %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="inptWrpr">
-            <label class="cstmLbl">Delivery Date</label>
-            <%= f.text_field :delivery_date, value: @sale_order.delivery_date.present? ? @sale_order.delivery_date.strftime("%d/%m/%Y") : '', class: 'delivery_date', readonly: true,  'data-parsley-required' => "true", "data-parsley-required-message" => "Please select delivery date." %>
-          </div>
+    <div class="frmHdr">Order Details</div>
+    <div class="row infoVw">
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Vendor</label>
+          <p><b><%= @sale_order.vendor&.name %></b></p>
         </div>
       </div>
-      <div class="fmBtnWrpr">
-        <button class="btn primButton form-submit">Submit</button>
-        <a class="btn outlButton" href="<%= sale_orders_path %>" style="width: 150px;">Cancel</a>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Order acceptance number</label>
+          <p><b><%= @sale_order.acceptance_no %></b></p>
+        </div>
       </div>
-    <% end %>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Delivery Address Line 1</label>
+          <p><b><%= @sale_order.delivery_address_lin1 %></b></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Delivery Address Line 2</label>
+          <p><b><%= @sale_order.delivery_address_lin2 %></b></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Delivery City</label>
+          <p><b><%= @sale_order.delivery_city %></b></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Delivery Zipcode</label>
+          <p><b><%= @sale_order.delivery_pin_code %></b></p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="inptWrpr">
+          <label>Delivery Date</label>
+          <p><b><%= @sale_order.delivery_date.strftime("%d/%m/%Y") %></b></p>
+        </div>
+      </div>
+    </div>      
     <table class="table cstmTable">
       <thead>
         <tr>
@@ -67,7 +61,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @proforma.selected_models.each_with_index do |sm, index| %>
+        <% @sale_order.selected_models.each_with_index do |sm, index| %>
         <tr>
           <td><%= index+1 %></td>
           <td><%= sm.product_model&.name %></td>
@@ -84,19 +78,19 @@
       <div class="col-4">
         <div class="inptWrpr lblLft">
           <label for="">Sub Total</label>
-          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.sub_total) %>">
+          <input type="text" disabled value="<%= number_to_indian_rupee(@sale_order.sub_total) %>">
         </div>
         <div class="inptWrpr lblLft">
           <label for="">CGST/IGST</label>
-          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.cgst) %>">
+          <input type="text" disabled value="<%= number_to_indian_rupee(@sale_order.cgst) %>">
         </div>
         <div class="inptWrpr lblLft">
           <label for="">SGST</label>
-          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.sgst) %>">
+          <input type="text" disabled value="<%= number_to_indian_rupee(@sale_order.sgst) %>">
         </div>
         <div class="inptWrpr lblLft">
           <label for="">Total</label>
-          <input type="text" disabled value="<%= number_to_indian_rupee(@proforma.total) %>">
+          <input type="text" disabled value="<%= number_to_indian_rupee(@sale_order.total) %>">
         </div>
       </div>
     </div>
@@ -104,23 +98,15 @@
       <div class="col-6">
         <div class="inptWrpr">
           <label for="">Terms</label>
-          <p><%= @proforma.terms.html_safe %></p>
+          <p><%= @sale_order.terms.html_safe %></p>
         </div>
       </div>
       <div class="col-6">
         <div class="inptWrpr">
           <label for="">Notes</label>
-          <p><%= @proforma.notes.html_safe %></p>
+          <p><%= @sale_order.notes.html_safe %></p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('.delivery_date').datetimepicker({
-    format:'d/m/Y',
-    timepicker: false,
-    scrollInput : false
-  });
-</script>

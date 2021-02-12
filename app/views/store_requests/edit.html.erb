@@ -1,0 +1,23 @@
+<div class="dbmnContainer">
+  <a class="btn bckBtn" href="<%= store_requests_path %>"><img src="/assets/backIcon.svg" alt="">Back</a>
+  <div class="pgHdWrpr">
+    <h2 class="pgHdr">Store Request</h2>
+  </div>
+  <div class="formWrapper">
+    <%= form_for(@store_request, url: store_request_path(@store_request), html: { "data-parsley-validate" => true, id: 'store_request-form' }) do |f| %>
+    <div class="frmHdr">Store request details</div>
+    <div class="row mt-4 align-items-end">
+      <div class="col-8 pr-5">
+        <div class="inptWrpr">
+          <label for="">Notes</label>
+          <%= f.cktext_area :notes, value: @store_request.notes, class: 'ckeditor', ckeditor: {toolbar: []} %>
+        </div>
+      </div>
+    </div>
+    <div class="fmBtnWrpr">
+      <button class="btn primButton form-submit">Submit</button>
+      <a class="btn outlButton" href="<%= store_requests_path %>" style="width: 150px;">Cancel</a>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="dbmnContainer">
+  <div class="pgHdWrpr d-flex align-items-start justify-content-between">
+    <h2 class="pgHdr">Store Requests</h2>
+  </div>
+  <div class="srchSpce mt-5 d-flex align-items-center justify-content-between">
+    <%= form_tag({controller: controller_name, action: action_name}, {method: :get}) do %>
+    <div class="srchWrpr d-flex align-items-center">
+      <span class="material-icons">search</span>
+      <input type="search" name="search[name]" value="<%= @q.present? ? @q[:name] : '' %>">
+    </div>
+    <% end %>
+    <a class="btn outlButton smlBtn" href="<%= download_report_store_requests_path(format: 'xlsx') %>">
+      <img src="/assets/export_icon.svg" alt="">
+      Export
+    </a>
+  </div>
+  <table class="table cstmTable">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Order No.</th>
+        <th>Invoice</th>
+        <th>Client</th>
+        <th>Delivery Date</th>
+        <th>Job Card No.</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @store_requests.each do |store_request| %>
+      <tr>
+        <td><%= store_request.code %></td>
+        <td><%= store_request.sale_order.code %></td>
+        <td><%= store_request.invoice&.code %></td>
+        <td><%= store_request.client&.name %></td>
+        <td><%= store_request.delivery_date.strftime("%d-%m-%Y") %></td>
+        <td><%= store_request.job_card&.code %></td>
+        <td>
+          <% if store_request.addressed? %>
+          <%= store_request.status %>
+          <% else %>
+          <a href="<%= approve_store_request_path(store_request) %>" data-method="post">Approve</a>
+          <a href="<%= reject_store_request_path(store_request) %>" data-method="post" class="text-danger ml-4">Reject</a>
+          <% end %>
+        </td>
+        <td>
+          <a href="<%= store_request_path(store_request) %>">View</a>
+          <% unless store_request.addressed? %>
+          <a href="<%= edit_store_request_path(store_request) %>">Edit</a>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
